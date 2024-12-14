@@ -9,7 +9,7 @@
 enable mouse in tmux
 
 put the following in `~/.tmux.conf`
-```
+``` bash
 set -g mouse on
 ```
 
