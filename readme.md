@@ -36,3 +36,20 @@ install packages in requirements.txt with proxy
 pip install -r requirements.txt --proxy=http://127.0.0.1:7890
 ```
 
+pip clean cache
+``` bash
+pip cache purge
+```
+
+## Conda
+
+conda clean cache
+``` bash
+conda clean -a
+```
+
+conda delete environment
+``` bash
+conda env remove -n myenv
+```
+
