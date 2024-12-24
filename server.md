@@ -28,7 +28,7 @@ Cgroup 可以控制进程组的系统资源使用量
 
 
 
-如何将命令转成 bash
+如何将命令行转成 bash
 ```bash
 # 查看当前的 SHELL 使用的是什么
 echo $SHELL
@@ -50,16 +50,6 @@ du -d 1 -h
 # 移动并创建软连接
 mv ~/.cache /opt/dlami/nvme/<your_account>/
 ln -s /opt/dlami/nvme/<your_account>/.cache .cache
-```
-
-用 `-v` 指令 mapping hf 路径？（这个我还没试
-```bash
-docker run -itd --shm-size 32g --gpus all --name sglang_zhizhou -v /opt/dlami/nvme/.cache:/root/.cache lmsysorg/sglang:latest /bin/bash
-```
-
-dev 用的 docker
-```bash
-docker build -t sglang-dev -f Dockerfile.dev
 ```
 
 
