@@ -54,7 +54,7 @@ ln -s /opt/dlami/nvme/<your_account>/.cache .cache
 
 用 `-v` 指令 mapping hf 路径？（这个我还没试
 ```bash
-docker run -itd --shm-size 32g --gpus all -v /opt/dlami/nvme/.cache:/root/.cache lmsysorg/sglang:latest /bin/bash
+docker run -itd --shm-size 32g --gpus all --name sglang_zhizhou -v /opt/dlami/nvme/.cache:/root/.cache lmsysorg/sglang:latest /bin/bash
 ```
 
 dev 用的 docker

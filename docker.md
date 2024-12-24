@@ -1,5 +1,16 @@
 
-[docker learn video from baidu](https://cloud.baidu.com/video-center/video/606)
+[一个视频速通 docker](https://cloud.baidu.com/video-center/video/606)
+
+## 记住这几个指令你的 docker 就精通了
+
+```bash
+# --shm-size 的意思是设置共享内存，好像在多线程的时候这个会有用
+docker run -itd --shm-size 32g --gpus all --name sglang_zhizhou -v /opt/dlami/nvme/.cache:/root/.cache lmsysorg/sglang:latest /bin/bash
+
+# 每次连接到正在运行的容器
+docker exec -it sglang_zhizhou
+```
+
 
 docker $\subset$ 容器技术 $\subset$ 虚拟化技术
 
@@ -88,7 +99,7 @@ docker exec -it [container_id] sh
 > 起一个 tomcat 的 webserver
 
 ```bash
-docker build -t mytomcat:1.0 .
+docker build -t mytomcat:2.0 .
 
 docker run -p 8080:8080 -d mytomcat:1.0
 
@@ -97,10 +108,16 @@ curl localhost:8080
 docker logs {容器 id}
 ```
 
+建立文件挂载
+```bash
+# 这个挂载成功了
+docker run -p 8080:8080 -v /opt/dlami/nvme/zhizhou/workspace/docker_learn:/usr/local/tomcat/webapps/ROOT -d mytomcat:1.0
+```
+
 
 ## Trouble shooting
 
-遇到这个问题
+遇到 permission deny
 ```bash
 Docker: Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock
 ```
@@ -113,6 +130,19 @@ sudo usermod -a -G docker $USER
 grep docker /etc/group
 
 # 重启终端之后会生效
+```
+
+遇到 docker 的名字被重复占用
+```bash
+docker: Error response from daemon: Conflict. The container name "/sglang_zhizhou" is already in use by container
+```
+
+```bash
+# 找到是哪个容器在用这个名字
+docker ps -a --filter "name=sglang_zhizhou"
+
+# 把这个容器删掉
+docker rm [container_id]
 ```
 
 
