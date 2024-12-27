@@ -5,10 +5,18 @@
 
 ```bash
 # --shm-size 的意思是设置共享内存，好像在多线程的时候这个会有用
-docker run -itd --shm-size 32g --gpus all --name sglang_zhizhou -v /opt/dlami/nvme/.cache:/root/.cache lmsysorg/sglang:latest /bin/bash
+docker run \
+    -itd \
+    --shm-size 32g \
+    --gpus all \
+    --name sglang_zhizhou \
+    -v /opt/dlami/nvme/.cache:/root/.cache \
+    -v /opt/dlami/nvme/zhizhou/workspace:/sgl-workspace \
+    lmsysorg/sglang:dev \
+    /bin/bash
 
 # 每次连接到正在运行的容器
-docker exec -it sglang_zhizhou
+docker exec -it sglang_zhizhou bash
 ```
 
 
@@ -141,7 +149,7 @@ docker: Error response from daemon: Conflict. The container name "/sglang_zhizho
 # 找到是哪个容器在用这个名字
 docker ps -a --filter "name=sglang_zhizhou"
 
-# 把这个容器删掉
+# 把这个容器删除掉
 docker rm [container_id]
 ```
 
