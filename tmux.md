@@ -1,5 +1,13 @@
 
-# Tmux 使用技巧
+
+## 安装 tmux
+
+```bash
+sudo apt-get update
+sudo apt-get install tmux
+```
+
+## Tmux 使用技巧
 
 tmux 真是博大精深
 
