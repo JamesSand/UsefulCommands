@@ -1,4 +1,10 @@
 
+# 使用 huggingface mirror
+
+``bash
+export HF_ENDPOINT=https://hf-mirror.com
+```
+
 # 如何查看本地下载的所有 huggingface 模型
 
 想必大家都遇到过写了一段代码，想用一个 huggingface 的模型测试一下，但是不知道本地已经下载了哪些模型
