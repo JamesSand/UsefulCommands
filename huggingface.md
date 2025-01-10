@@ -1,7 +1,8 @@
 
 # 使用 huggingface mirror
 
-``bash
+```bash
+
 export HF_ENDPOINT=https://hf-mirror.com
 ```
 
