@@ -9,6 +9,20 @@ sudo apt-get install tmux
 
 ## Tmux 使用技巧
 
+``` bash
+# 创建一个 tmux session
+tmux new -s <session name>
+
+# 关掉一个 tmxu session
+# Ctrl + D
+
+# detach from a tmux session
+# Ctrl + B 然后按 D
+
+# 链接到 session 上
+tmux a -t <session name>
+```
+
 tmux 真是博大精深
 
 在缓冲区里边搜索
