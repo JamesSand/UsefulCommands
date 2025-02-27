@@ -13,6 +13,9 @@ sudo apt-get install tmux
 # 创建一个 tmux session
 tmux new -s <session name>
 
+# 如果需要 tmux 中显示中文字符要使用
+tmux -u new -s <session name>
+
 # 关掉一个 tmxu session
 # Ctrl + D
 
