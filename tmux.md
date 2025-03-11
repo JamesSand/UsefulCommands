@@ -7,6 +7,13 @@ sudo apt-get update
 sudo apt-get install tmux
 ```
 
+enable mouse in tmux
+
+put the following in `~/.tmux.conf`
+``` bash
+set -g mouse on
+```
+
 ## Tmux 使用技巧
 
 ``` bash
