@@ -1,8 +1,6 @@
 # Useful Commands
 
 > By JamesSand
-> 
-> Some useful commands in Linux
 
 
 ## Tmux
@@ -48,8 +46,14 @@ conda clean cache
 conda clean -a
 ```
 
+conda create env
+
+```bash
+conda create -n <env_name> python=3.10
+```
+
 conda delete environment
 ``` bash
-conda env remove -n myenv
+conda env remove -n <env_name>
 ```
 
