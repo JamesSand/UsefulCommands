@@ -2,9 +2,8 @@
 setup proxy for git
 
 ```bash
-# 设置http:
+# 设置http and https:
 git config --global http.proxy http://127.0.0.1:7890
-# 设置https:
 git config --global https.proxy https://127.0.0.1:7890
 # 设置socks:
 git config --global http.proxy 'socks5://127.0.0.1:1080'
