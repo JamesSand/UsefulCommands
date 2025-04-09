@@ -25,12 +25,25 @@ git config --global --unset https.proxy
 git remote set-url origin https://github.com/username/repo.git
 ```
 
-如果 git 远程仓库有很多 branches，想要一下子全部拉去 branch，一般可以使用 
+如果 git 远程仓库有很多 branches，想要一下子全部拉取 branch，一般可以使用 
 
 ```bash
 git fetch origin
 ```
 
 这部分可以参考[清华贵系的 OS 课程里边相关的内容](https://learningos.cn/uCore-Tutorial-Guide-2025S/chapter4/0intro.html#github)
+
+只想 clone git repo 里边的某一个文件夹怎么办
+
+```bash
+# depth 1 表示只拉取最新的一次 commit
+# filter blob none 表示只拉取元数据
+# sparse 表示启用 sparse checkout 模式
+git clone --depth 1 --filter=blob:none --sparse git@github.com:PKUanonym/REKCARC-TSC-UHT.git
+
+cd <your repo>
+
+git sparse-checkout set 大三下/数值分析/exam
+```
 
 
