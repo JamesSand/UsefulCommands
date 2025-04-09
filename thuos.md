@@ -9,5 +9,10 @@ ch6 的代码一开始不知道为什么编译一直不通过，调了两天
 git clone https://github.com/LearningOS/uCore-Tutorial-Test-2025S.git user
 ```
 
+每次切换一个分支之后，都需要彻底 clean，以防不同分支之间的东西互相干扰
 
+```bash
+make clean
+make user clean
+```
 
