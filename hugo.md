@@ -21,6 +21,14 @@ git submodule add https://github.com/adityatelange/hugo-PaperMod.git themes/Pape
 echo "theme = 'PaperMod'" >> hugo.toml
 ```
 
+launch hugo
+```
+hugo serve
+
+# if want to include draft, use
+hugo serve -D
+```
+
 
 
 
