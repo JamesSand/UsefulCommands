@@ -1,4 +1,10 @@
 
+config global username and email
+```bash
+git config user.name "Zhizhou Sha"
+git config --global user.email "zhizhousha@utexas.edu"
+```
+
 ```bash
 # 如果遇到了不能解决的问题，下边提供了一种暴力的解决方法
 git push origin main --force
