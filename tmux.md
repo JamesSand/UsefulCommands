@@ -35,7 +35,7 @@ tmux a -t <session name>
 
 tmux 真是博大精深
 
-在缓冲区里边搜索
+在 vi 的模式下，在缓冲区里边搜索
 ```bash
 # 按下 Ctrl + b 然后按下 [ 进入 copy mode
 # 从上往下搜索用 /
@@ -45,3 +45,12 @@ tmux 真是博大精深
 # 按下 N 搜索上一个
 # 按下 q 退出搜索模式
 ```
+
+如果上边这种方法不行，说明现在 tmux 是在 Emacs 模式下，在这种模式下，搜索要这么做
+```bash
+按下 Ctrl + b 然后按下 [ 进入 copy mode
+
+Search down 用 Ctrl + S (从下往上搜索)
+Search up 用 Ctrl + R (从上往下搜索)
+```
+
