@@ -1,4 +1,14 @@
 
+install git lfs
+由于没有 server 的 sudo 权限，没法用 apt install git lfs。找到了一个用 conda install 的方法
+```bash
+conda install -c conda-forge git-lfs
+
+# 用下边的指令可以验证
+git lfs install
+git lfs version
+```
+
 config global username and email
 ```bash
 git config user.name "Zhizhou Sha"
