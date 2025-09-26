@@ -1,4 +1,14 @@
 
+如何在 server 上下载 google drive 的数据。
+比如说我有这个链接 https://drive.google.com/file/d/1o_dCMzwjaA2azbGOxAE7-4E7NbJkgdgO/view?usp=drive_link 
+其中的 id 是 `1o_dCMzwjaA2azbGOxAE7-4E7NbJkgdgO`
+
+```bash
+pip install gdown
+
+gdown 1o_dCMzwjaA2azbGOxAE7-4E7NbJkgdgO
+```
+
 创建一个用户
 
 ```bash
@@ -50,6 +60,7 @@ du -d 1 -h
 mv ~/.cache /opt/dlami/nvme/<your_account>/
 ln -s /opt/dlami/nvme/<your_account>/.cache .cache
 ```
+
 
 
 
