@@ -24,6 +24,11 @@ conda install -c conda-forge nodejs=20 -y
 npm install -g @openai/codex
 ```
 
+没有 sudo 怎么安装 git lfs
+```bash
+conda install -c conda-forge git-lfs
+```
+
 conda clean cache
 ``` bash
 conda clean -a
