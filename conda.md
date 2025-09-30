@@ -15,6 +15,12 @@ source ~/miniconda3/bin/activate
 conda init --all
 ```
 
+没有 sudo 怎么用 conda 安装 npm
+
+```bash
+conda install -c conda-forge nodejs=20
+```
+
 conda clean cache
 ``` bash
 conda clean -a
