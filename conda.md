@@ -18,7 +18,7 @@ conda init --all
 没有 sudo 怎么用 conda 安装 npm
 
 ```bash
-conda install -c conda-forge nodejs=20
+conda install -c conda-forge nodejs=20 -y
 
 # install openai codex
 npm install -g @openai/codex
