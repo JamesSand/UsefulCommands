@@ -19,6 +19,9 @@ conda init --all
 
 ```bash
 conda install -c conda-forge nodejs=20
+
+# install openai codex
+npm install -g @openai/codex
 ```
 
 conda clean cache
