@@ -19,17 +19,6 @@ docker run \
 docker exec -it sglang_zhizhou bash
 ```
 
-
-docker $\subset$ 容器技术 $\subset$ 虚拟化技术
-
-docker 启动时间是秒级，虚拟机启动时间是分钟级，物理机的建设是月级
-
-docker 架构
-![alt text](image.png)
-
-Docker hub 是一个类似 github 的地方
-
-
 ## Docker Commands
 
 ```bash
@@ -152,6 +141,19 @@ docker ps -a --filter "name=sglang_zhizhou"
 # 把这个容器删除掉
 docker rm [container_id]
 ```
+
+
+docker $\subset$ 容器技术 $\subset$ 虚拟化技术
+
+docker 启动时间是秒级，虚拟机启动时间是分钟级，物理机的建设是月级
+
+docker 架构
+![alt text](image.png)
+
+Docker hub 是一个类似 github 的地方
+
+
+
 
 
 
