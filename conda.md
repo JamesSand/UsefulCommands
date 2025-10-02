@@ -24,7 +24,7 @@ npm install -g @openai/codex
 
 没有 sudo 怎么安装 git lfs
 ```bash
-conda install -c conda-forge git-lfs
+conda install -c conda-forge git-lfs -y
 ```
 
 conda clean cache
