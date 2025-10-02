@@ -148,10 +148,9 @@ docker $\subset$ 容器技术 $\subset$ 虚拟化技术
 docker 启动时间是秒级，虚拟机启动时间是分钟级，物理机的建设是月级
 
 docker 架构
-![alt text](image.png)
+![alt text](imgs/image.png)
 
 Docker hub 是一个类似 github 的地方
-
 
 
 
