@@ -1,3 +1,12 @@
+pip 的问题真的是千奇百怪。这个应该是 codex 乱改我的 init file，搞出问题了
+
+我在 conda env 里边，无论怎么 which pip 用的都是 local 目录下的 pip，实际上我想要的 pip 是 conda  env 里边的 pip
+
+在 CSDN 上找到了老哥的解答
+
+https://blog.csdn.net/weixin_41712499/article/details/105430471 
+
+
 
 ## Pip install 设置 Proxy
 

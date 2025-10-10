@@ -1,3 +1,9 @@
+
+
+
+
+### UT EER Printer
+
 GDC 的 printer 没法用 windows 的电脑链接，所以只能去EER 7 楼的 printer
 
 要用 IP 地址添加 printer 
