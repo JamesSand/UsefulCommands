@@ -1,5 +1,17 @@
 
 
+### Travel Reimbursement
+
+到这个 request form 的地方，在 travel 之前要交一个 request 
+
+travel 之后要交一个 reimbursement request
+
+每天的 meal 有 51 刀的额度，剩下的都需要 receipt 才能报销
+
+https://utdirect.utexas.edu/apps/services/requests/
+
+
+
 
 
 ### UT EER Printer

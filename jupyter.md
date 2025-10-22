@@ -4,3 +4,4 @@
 
 debug 一下午发现，jupyter extension 的 202508 的版本本身有问题。回退到 202506 就好了
 
+> update: 20251014 这个问题在 2509 的 jupyter version 里边修复了

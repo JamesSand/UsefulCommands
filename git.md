@@ -1,6 +1,16 @@
+### 强行拉去远端仓库到本地
 
-install git lfs
+```
+git fetch origin
+git reset --hard origin/verl_new
+```
+
+
+
+### install git lfs
+
 由于没有 server 的 sudo 权限，没法用 apt install git lfs。找到了一个用 conda install 的方法
+
 ```bash
 conda install -c conda-forge git-lfs
 
@@ -49,7 +59,7 @@ git fetch origin
 
 这部分可以参考[清华贵系的 OS 课程里边相关的内容](https://learningos.cn/uCore-Tutorial-Guide-2025S/chapter4/0intro.html#github)
 
-只想 clone git repo 里边的某一个文件夹怎么办
+### 只想 clone git repo 里边的某一个文件夹怎么办
 
 ```bash
 # depth 1 表示只拉取最新的一次 commit
@@ -61,5 +71,4 @@ cd <your repo>
 
 git sparse-checkout set 大三下/数值分析/exam
 ```
-
 

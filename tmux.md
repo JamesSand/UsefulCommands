@@ -1,6 +1,14 @@
 
 
-## 安装 tmux
+### tmux 关掉所有 session
+
+```
+tmux kill-session
+```
+
+
+
+### 安装 tmux
 
 ```bash
 sudo apt-get update
@@ -14,7 +22,7 @@ put the following in `~/.tmux.conf`
 set -g mouse on
 ```
 
-## Tmux 使用技巧
+### Tmux 使用技巧
 
 ``` bash
 # 创建一个 tmux session
@@ -46,7 +54,10 @@ tmux 真是博大精深
 # 按下 q 退出搜索模式
 ```
 
+### tmux 搜索
+
 如果上边这种方法不行，说明现在 tmux 是在 Emacs 模式下，在这种模式下，搜索要这么做
+
 ```bash
 按下 Ctrl + b 然后按下 [ 进入 copy mode
 
