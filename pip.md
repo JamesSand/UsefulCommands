@@ -1,3 +1,25 @@
+
+
+### pip 里边怎么装 uv
+
+原来只需要 
+
+```
+pip install uv
+```
+
+就可以了
+
+
+
+### pip install -e ./"[gui,rag,code_interpreter,mcp]"
+
+看不懂这些是什么意思
+
+
+
+### conda 的 pip 用的是根目录下的 pip 怎么办
+
 pip 的问题真的是千奇百怪。这个应该是 codex 乱改我的 init file，搞出问题了
 
 我在 conda env 里边，无论怎么 which pip 用的都是 local 目录下的 pip，实际上我想要的 pip 是 conda  env 里边的 pip
@@ -8,7 +30,7 @@ https://blog.csdn.net/weixin_41712499/article/details/105430471
 
 
 
-## Pip install 设置 Proxy
+### Pip install 设置 Proxy
 
 我的电脑上开了梯子之后会遇到 pip 不能 install 的问题，通过如下指令配置代理可以解决
 ```bash

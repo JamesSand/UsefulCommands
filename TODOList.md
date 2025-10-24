@@ -1,12 +1,30 @@
 ### 需要学的 link
 
+
+
+### LLM 相关
+
+现在的 LLM 结构化输出是怎么实现的？
+
+
+
+### Python 相关
+
+什么是 async 和 await
+
+
+
+### Math 相关
+
+
+
 KL loss 里边的 K1 K2 K3 estimator
 
 http://joschu.net/blog/kl-approx.html 
 
 
 
-用 Qurtz4 setup 我的个人 blog
+### System 相关
 
 
 
@@ -31,3 +49,12 @@ vllm 里边的 cascasde attention 是什么东西
 
 
 学一下 ray 的设计结构
+
+
+
+###  MISC
+
+用 Qurtz4 setup 我的个人 blog
+
+
+
