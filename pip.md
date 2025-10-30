@@ -2,6 +2,10 @@
 
 ### pip 里边怎么装 uv
 
+这个不是正规安装 uv 的办法。uv 也可以做环境管理器，所以正常的 uv 使用要参考 `uv.md` 
+
+
+
 原来只需要 
 
 ```
@@ -15,6 +19,8 @@ pip install uv
 ### pip install -e ./"[gui,rag,code_interpreter,mcp]"
 
 看不懂这些是什么意思
+
+TODO: 这个搞了一半没搞完
 
 
 
