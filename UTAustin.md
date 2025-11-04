@@ -1,5 +1,36 @@
 
 
+### CS PhD 毕业 requirement
+
+这是总纲
+
+https://www.cs.utexas.edu/graduate/phd-program/degree-requirements 
+
+总的来说我需要 breadth course 和 depth course
+
+breath course 的要求在这里
+
+https://www.cs.utexas.edu/graduate/courses/breadth-courses 
+
+breadth 最后的脚注里边有一些带星号的课是原来只被算作在 395T 里边的。不能重复算 395T 和 breadth course
+
+
+
+### MSCS 毕业标准
+
+两个 track，thesis 和 course work
+
+其中都要求 breadth course，三门课总共 9 学分
+
+除此之外，
+
+- Thesis 要求，其他 CS Grad Course 9 学分，其他 minor 6 学分。thesis 有两门课 6 学分，要分两个学期上
+- Coursework，其他 CS Grad Course 15 学分，其他 minor 6 学分
+
+相当于 Thesis thesis 多了两门 thesis 课，Coursework 多了两门 CS Grad Course 
+
+
+
 ### Travel Reimbursement
 
 到这个 request form 的地方，在 travel 之前要交一个 request 

@@ -74,13 +74,5 @@ MIS 是 masked importance sampling
 
 
 
-### LLM Basic
-
-top k sampling ：只在概率最高的 k 个候选里抽样，其他 token 概率设为 0，然后重新归一化再采样。
-
-top p sampling: 按从大到小排序，取累计概率刚好达到阈值 p 的最小集合，再重新归一化抽样。 
-
-
-
 
 
