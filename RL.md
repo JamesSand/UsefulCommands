@@ -35,3 +35,17 @@ Entropy explosion: entropy 越大，代表着概率越低，代表着 exploratio
 
 
 
+### Classic  RL 和 LLM RL 的符号对照表 backup
+
+
+
+
+|  Variable Name  | Classical RL | LLM |
+|  :--:  | :--:  |  :--:  |
+| state | $s$ | $Q$ |
+| action | $a$ | $Y = \{y_1, \cdots y_m\}$  |
+| probability | $\pi_\theta(a |s)$ | $\Pi_{i=1}^m \pi_\theta (y_i | y_{j<i}, Q)$ |
+| reward | $R(s, a)$ | $R(Q, Y)$ |
+
+
+

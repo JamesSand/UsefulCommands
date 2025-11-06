@@ -29,7 +29,7 @@ https://scalingintelligence.stanford.edu/openings/
 
 
 
-### 机票
+### 怎么买机票
 
 在这里查价格
 
