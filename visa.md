@@ -18,6 +18,83 @@ https://www.axa.cn/welfare/travelTips/travel_welfare_tip9.html
 
 
 
+### 意大利 shengen visa
+
+> 约到 11.10 号的了
+
+这个是预约的网站
+
+https://prenotami.esteri.it/ 
+
+
+
+这个网站上需要填两个表。一个是 itinarary，另一个是 application form
+
+https://conshouston.esteri.it/en/servizi-consolari-e-visti/servizi-per-il-cittadino-straniero/visti/tourism/ 
+
+这里是其他材料的清单
+
+https://conshouston.esteri.it/wp-content/uploads/2025/05/TOURIST-VISA-CHECK-LIST.pdf
+
+这里还有一个清单，我会取这三个东西的并集。
+
+https://piao.tips/schengen-visa-in-the-us-italy/
+
+太多了，真的太多了
+
+
+
+#### 材料清单
+
+需要填的表格
+
+- itinarary 打印一下
+- application form 打印一下
+
+其他材料
+
+- 预约确认单 done
+
+- 护照原件和首页复印件 done
+- 过去的申根签证复印件 done
+- 美国居留证明 + 回美签证 done
+- 机票预订单 done
+- 酒店预订单 done
+- 财产证明，过去三个月的 bank statement 这个沿用上次的就行了
+- 在读证明 done
+- 驾照原件和复印件 done
+- 申根保险 https://piao.tips/travelinsurance/ 需要打印和退款 退款 https://mail.google.com/mail/u/0/#inbox/FMfcgzQcqkzDqPcVpKlzlcxFbSGDLPdF 
+- 两张照片 (2 inch x 2 inch) (51cm x 51cm) done
+
+
+
+#### 填表 Application form
+
+UT Austin contact
+
+110 Inner Campus Drive, Austin, TX 78712
+
+admissions@austin.utexas.edu
+512-475-7399
+
+
+
+
+
+#### 意大利的一些城市
+
+>  要写一个 itnerary，正好了解一下意大利的这些城市。
+
+威尼斯 Venice
+
+佛罗伦萨 Florence
+
+Rome
+
+
+
+
+
 ### 法国 shengen visa
 
 #### 预约 appointment

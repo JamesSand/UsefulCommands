@@ -8,6 +8,23 @@ pip install --no-deps -e .
 
 
 
+### merge fsdp checkpoints
+
+如果是用 fsdp 训练完之后，还得 merge 一下
+
+下边是一个 example script
+
+```
+python -m verl.model_merger merge \
+    --backend fsdp \
+    --local_dir checkpoints/verl_fsdp_gsm8k_examples/qwen2_5_0b5_fsdp_saveload/global_step_1/actor \
+    --target_dir /path/to/merged_hf_model
+```
+
+
+
+
+
 ### uvloop 的报错
 
 ```bash

@@ -1,5 +1,66 @@
 
 
+### SVD related
+
+SVD 分解的公式
+$$
+W = U \Sigma V^\top
+$$
+
+
+#### Principal Angle
+
+这个文章介绍的非常好，有很多数学推导，但是这里我们只记录最终的结论。
+
+https://xyfjason.top/blog-main/2024/03/02/%E5%AD%90%E7%A9%BA%E9%97%B4%E7%9A%84%E8%B7%9D%E7%A6%BB/
+
+
+
+
+
+
+
+#### Stable Rank
+
+$$
+\mathrm{erank}(A) =  \frac{\sum_i \sigma_i^2}{\sigma_1^2}
+$$
+
+- stable rank 的取值范围是 $[1, n]$ 
+- stable rank = 1 的时候，说明整个 singular value 都分布在最大的上边，很尖
+- stable rank = n 的时候，说明整个 singular value 均匀分布在所有的上边，很平
+
+
+
+下边是一些跟 singular value 和别的东西的联系
+
+跟着苏神的 blog 学
+
+https://zhuanlan.zhihu.com/p/1899586138747937721
+
+首先复习一下矩阵范数
+
+- Spectral Norm $\| A\|_2 = \sigma_1$ 最大的奇异值
+- Nuclear Norm $\| A \|_* = \sum_i \sigma_i$ 所有奇异值的和
+
+由于所有奇异值都是非负的，可以将其归一化成一个概率分布
+$$
+p_i = \frac{\sigma_i^\gamma}{\sum_j \sigma_j^\gamma}
+$$
+这里 $\gamma$ 可以取 1 或者 2
+
+有了概率分布，就可以计算信息熵
+$$
+H = - \sum_i p_i \log p_i
+$$
+于是，我们的 effective rank，或者说 stable rank 的定义就是
+$$
+\mathrm{erank}(A) = \exp(H)
+$$
+苏神关于 stable rank 还有很多推导，这里就不都写出来了。
+
+
+
 ### KL Divergence
 
 http://joschu.net/blog/kl-approx.html

@@ -1,3 +1,20 @@
+### git submodule
+
+给 git 仓库添加 submodule
+
+```bash
+git submodule add https://github.com/JamesSand/trl-test trl-test
+# 添加指定的分支
+git submodule add -b master https://github.com/JamesSand/trl-test trl-test
+
+# 更新所有submodule ，让他们是最新的提交
+git submodule update --remote --recursive
+```
+
+
+
+
+
 ### 强行拉去远端仓库到本地
 
 ```
