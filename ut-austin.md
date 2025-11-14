@@ -37,6 +37,32 @@ breadth 最后的脚注里边有一些带星号的课是原来只被算作在 39
 
 
 
+### 本科项目
+
+有两个和交互设计相关的专业
+
+College of Fine Art: Design
+
+https://designcreativetech.utexas.edu/undergraduate-design-program 
+
+这个是他们的本科录取委员会的邮箱
+
+School of Design and Creative Technologies	Nicole Terry	adctadmissions@austin.utexas.edu
+
+
+
+iSchool
+
+https://ischool.utexas.edu/programs/informatics
+
+这里也有一个涉及到 UI design 的方向
+
+contact 这个人 https://ischool.utexas.edu/profiles/natasha-saldana 
+
+她的邮箱是 nvs@ischool.utexas.edu 
+
+
+
 ### Travel Reimbursement
 
 到这个 request form 的地方，在 travel 之前要交一个 request 

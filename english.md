@@ -2,6 +2,7 @@
 
 
 
+
 proactive 主动
 
 reactive 被动

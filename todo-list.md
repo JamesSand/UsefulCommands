@@ -30,9 +30,15 @@ http://joschu.net/blog/kl-approx.html
 
 ### System 相关
 
+tokenizer parallelism 是什么东西
 
 
-总结一下 fp32, bf16, fp16 的区别
+
+Dynamo bytecode 是什么东西
+
+
+
+flash infer 是什么
 
 
 
@@ -58,7 +64,7 @@ vllm 里边的 cascasde attention 是什么东西
 
 ###  MISC
 
-用 Qurtz4 setup 我的个人 blog
+
 
 
 
