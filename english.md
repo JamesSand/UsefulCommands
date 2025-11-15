@@ -2,6 +2,14 @@
 
 
 
+oblivious 浑然不觉
+
+
+
+Hell or High-Water 赴汤蹈火
+
+
+
 
 proactive 主动
 

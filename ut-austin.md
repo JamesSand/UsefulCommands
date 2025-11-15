@@ -63,6 +63,14 @@ contact 这个人 https://ischool.utexas.edu/profiles/natasha-saldana
 
 
 
+### eduroam 链接
+
+username 是 zs7752@utexas.edu
+
+密码是 UT EID 的密码
+
+
+
 ### Travel Reimbursement
 
 到这个 request form 的地方，在 travel 之前要交一个 request 
