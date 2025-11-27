@@ -1,15 +1,5 @@
 ## LLM for tool-call
 
-### TODO
-
-1 看一下 BFCL 具体在测什么
-
-2 看一下 ACEBench具体在测什么
-
-3 看一下 Tool Call 上边 training free 的方法
-
-
-
 
 
 ### Ideas
@@ -26,13 +16,13 @@ https://arxiv.org/pdf/2406.19228
 
 这个也得看一下
 
-Benchmarking Failures in Tool-Augmented Language Models
+**Benchmarking Failures in Tool-Augmented Language Models (NAACL 2025)**
 
 https://arxiv.org/pdf/2503.14227
 
 
 
-On the Robustness of Agentic Function Calling (Trust NLP ACL 2025)
+**On the Robustness of Agentic Function Calling (Trust NLP ACL 2025)**
 
 https://aclanthology.org/2025.trustnlp-main.20.pdf
 
@@ -63,6 +53,8 @@ LLM reasoning 上的 budge planning
 
 
 ### Benchmark
+
+先看一下 benchmark 具体都是在做什么
 
 BFCL: Berkeley Function Calling Leaderboard
 

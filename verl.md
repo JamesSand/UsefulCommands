@@ -1,6 +1,9 @@
-verl installation
+### verl installation
 
 ```bash
+conda create -n verl1124 python==3.12 -y
+conda activate verl1124
+
 USE_MEGATRON=0 USE_SGLANG=0 bash scripts/install_vllm_sglang_mcore.sh
 
 pip install --no-deps -e .
@@ -229,9 +232,21 @@ https://verl.readthedocs.io/en/latest/examples/config.html#config-explain-page
 
 ### verl 参数理解
 
-tensor_model_parallel_size 
+这个是 verl 的官方文档
+
+https://verl.readthedocs.io/en/latest/examples/config.html 
+
+
+
+tensor_model_parallel_size：TP size for rollout. Only effective for vllm.
 
 指的是把矩阵乘法做切分，比如说 attention dim 4096，有 32 head，TP=4 的话，每个卡处理 1024 dim，处理 8 head
+
+
+
+ ulysses_sequence_parallel_size: SP size
+
+这里用的是 Deepspeed Ulysses 的实现。这个相当于是按照 sequence 维度进行切割
 
 
 

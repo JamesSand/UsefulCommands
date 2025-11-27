@@ -1,3 +1,9 @@
+
+
+这个网站记录了中国护照免签，落地签，电子签，有美签可以不用办签证的地方
+
+https://www.uscreditcardguide.com/china-visa-free-map/
+
 ### J1 2 year rule
 
 > 旧事重提，J1 visa 2 year home residency
@@ -15,6 +21,14 @@ https://www.zhihu.com/question/45574327
 申根签证问答。可不可以用一个国家的shengen visa 去别的 shengen visa
 
 https://www.axa.cn/welfare/travelTips/travel_welfare_tip9.html 
+
+
+
+### 土耳其 电子签
+
+10 分钟就能出签，很快的
+
+https://zhuanlan.zhihu.com/p/633293976 
 
 
 

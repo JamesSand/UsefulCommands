@@ -2,6 +2,42 @@
 
 
 
+hide through 蒙混过关
+
+
+
+psycho 精神病人
+
+
+
+sycophancy 谄媚
+
+
+
+trojan 特洛伊木马
+
+
+
+dissecting 剖析
+
+
+
+Verbatim Extraction 逐字提取
+
+
+
+everest 珠穆朗玛峰
+
+
+
+hijack 劫持
+
+
+
+granular 细粒度的
+
+
+
 oblivious 浑然不觉
 
 
