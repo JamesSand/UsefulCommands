@@ -1,5 +1,55 @@
 
 
+### ECE student wiki
+
+这个感觉非常非常 nb 啊，有各种各样我需要了解的东西
+
+https://cloud.wikis.utexas.edu/wiki/spaces/WNCG/overview
+
+
+
+### UT Austin 怎么 waive insurance 和学费
+
+这是 waive 学费的 link
+
+https://utdirect.utexas.edu/acct/fb/waivers/index.WBX 
+
+![image-20260113130615580](imgs/image-20260113130615580.png)
+
+
+
+这是 waive insurance 的
+
+这里下边有一个链接
+
+https://global.utexas.edu/isss/advising-services/insurance/waivers 
+
+<img src="imgs/image-20260113130220379.png" alt="image-20260113130220379" style="zoom:50%;" />
+
+点进去是这个
+
+<img src="imgs/image-20260113130243356.png" alt="image-20260113130243356" style="zoom:50%;" />
+
+这样就 waive 完成了
+
+### 1098 T form 
+
+在这里能查看电子版的，但是现在还是 un available
+
+https://utdirect.utexas.edu/acct/rec/irs1098t/index.WBX 
+
+### UT Austin 选课
+
+https://utdirect.utexas.edu/registration/chooseSemester.WBX 
+
+
+
+### 如何用学生医保
+
+https://global.utexas.edu/isss/advising-services/insurance/how-to-use 
+
+
+
 ### Whitaker 网球场预定
 
 https://secure.rs.utexas.edu/app/myrecsports/myreservations.php
