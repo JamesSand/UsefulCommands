@@ -11,6 +11,33 @@ pip install --no-deps -e .
 
 
 
+### verl 往里边加参数
+
+如果要给 optimizer 加参数的话，要改这几个地方
+
+Step1：Lucky_RL/verl/trainer/config/actor/actor.yaml 里边要给 hydra config 加参数
+
+Step2：Lucky_RL/verl/workers/config/optimizer.py class FSDPOptimizerConfig 要加参数
+
+```
+# 这一步要非常小心，要写 data type，否则会 hydra 不认识
+svd_muon_use_sgd_only: bool = False
+```
+
+
+
+注意这里在 shell 里边的时候就不能加前边的 + 这个参数
+
+
+
+(Hydra 还是不太会用捏)
+
+
+
+
+
+
+
 ### merge fsdp checkpoints
 
 如果是用 fsdp 训练完之后，还得 merge 一下
