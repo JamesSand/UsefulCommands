@@ -3,6 +3,44 @@
 
 torch 还是有很多可以学的
 
+
+
+### DTensor 和 torch tensor 的区别
+
+- DTensor 内部携带 **分布规格**（Distributed Spec），主要包含：
+  - `device_mesh`：参与分布的设备网格（哪些 rank/设备）
+  - `placements`：每个 mesh 维度怎么放（`Shard(dim)` / `Replicate()` / …）
+  - `global shape`：全局形状信息
+
+因此 DTensor 不是“只有数据”，它是 **数据 + 分布式元数据 + 分布式调度逻辑**。
+
+
+
+### torch dist all2all
+
+`dist.all_to_all(output_list, input_list, ...)` 的语义
+
+对每个 rank 来说：
+
+- `input_list` 长度必须是 `world_size`
+- `output_list` 长度也必须是 `world_size`
+- 第 `j` 个元素表示：
+  - `input_list[j]`：**我要发给 rank j 的那块 tensor**
+  - `output_list[j]`：**我将从 rank j 收到的那块 tensor**
+
+所以在任意 rank r 上，通信结束后：
+
+- `output_list[j]` 里装的是 “rank j 发给 rank r 的那块”
+- 也就是从所有 rank 汇总来的 `world_size` 块
+
+
+
+
+
+
+
+
+
 ### torch device mesh
 
 中文文档
