@@ -32,6 +32,28 @@ https://global.utexas.edu/isss/advising-services/insurance/waivers
 
 这样就 waive 完成了
 
+### W-2
+
+可以直接点这个链接到达 workday
+
+https://t.e2ma.net/click/cn4uoq/sv9w5rph/wmh4ycb 
+
+<img src="imgs/image-20260116200959779.png" alt="image-20260116200959779" style="zoom:50%;" />
+
+W2 的作用
+
+**报税用（最重要）**
+ 你在报联邦税（以及有些州税）的时候，要把 W-2 里的数字填进报税表里。
+ W-2 上的“已预扣税”会影响你最后是**退税**还是**补税**。
+
+**证明收入**
+ 租房、贷款、签证/移民材料、申请信用卡等，有时会要看你一年的工资收入，W-2 是最标准的证明之一。
+
+**核对雇主有没有扣错税**
+ 比如预扣税太多/太少、社保/医保税、以及你在工资单上看到的累计数字是否一致。
+
+
+
 ### 1098 T form 
 
 在这里能查看电子版的，但是现在还是 un available
