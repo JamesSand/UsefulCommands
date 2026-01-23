@@ -13,16 +13,13 @@ https://github.com/zhuhanqing/Lucky_RL/compare/689ac9429a23816bb3124de8765bdc5ac
 
 
 
-
-
 ### git add . 加错了文件 怎么都删掉
 
 ```
 git reset
 ```
 
-
-
+### git conflict 要先 git add . 然后再 git commit
 
 
 ### 从一个分支给另一个分支挪文件夹

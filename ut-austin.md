@@ -14,6 +14,74 @@ https://cloud.wikis.utexas.edu/wiki/spaces/WNCG/overview
 
 
 
+### UT Austin AHP insurance
+
+收到了这个邮件，看起来必须得处理一下了
+
+<img src="D:\2026Spring\UsefulCommands\imgs\image-20260122215022453.png" alt="image-20260122215022453" style="zoom:50%;" />
+
+做了几个尝试
+
+1 给 international insurance 发邮件  International Insurance <intlinsurance@austin.utexas.edu>
+
+2 给 CS graduate office 发邮件  gradoffice@cs.utexas.edu 
+
+
+
+明天去找一下他们
+
+[**Gates Dell Complex**](https://utdirect.utexas.edu/apps/campus/buildings/information/nlogon/maps/UTM/GDC/)
+GDC 2.702
+
+Monday - Friday:
+8:00 am - 5:00 pm
+
+
+
+现在有的信息是，我在这个网站上是有正常的保险的
+
+https://utbenefit-eds.utsystem.edu/shibboleth-ds/index.html?entityID=https%3A%2F%2Futbenefitmembersso.utsystem.edu%2Fsimplesaml%2Fmodule.php%2Fsaml%2Fsp%2Fmetadata.php%2Fdefault-sp&return=https%3A%2F%2Futbenefitmembersso.utsystem.edu%2Fsimplesaml%2Fmodule.php%2Fsaml%2Fsp%2Fdiscoresp.php%3FAuthID%3D_4e398c53134ece2c0a3890f9bbca2dfff670587dca%253Ahttps%253A%252F%252Futbenefitmembersso.utsystem.edu%252Fsimplesaml%252Fsaml2%252Fidp%252FSSOService.php%253Fspentityid%253Dbenefitfocus.com%25253Asp%25253Amember%2526cookieTime%253D1756444051&returnIDParam=idpentityid
+
+![image-20260122223053501](D:\2026Spring\UsefulCommands\imgs\image-20260122223053501.png)
+
+这是最原始的邮件
+
+![image-20260122223602268](D:\2026Spring\UsefulCommands\imgs\image-20260122223602268.png)
+
+顺着这个链接点进来登陆之后只能看到这个
+
+https://utaustin.myahpcare.com/waiver 
+
+我真的是 wtf 了
+
+![image-20260122223631095](D:\2026Spring\UsefulCommands\imgs\image-20260122223631095.png)
+
+
+
+但是我明天还是去问问他们吧
+
+
+
+现在我的理解是， gra 给的是 bluecross blue field 的 insurance
+
+https://www.bcbstx.com/member 
+
+但是是不是还要在 ahp 上自己交一个 waiver 的申请？
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### UT Austin 怎么 waive insurance 和学费
 
 这是 waive 学费的 link
