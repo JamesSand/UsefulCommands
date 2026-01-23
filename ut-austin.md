@@ -4,6 +4,12 @@
 
 这个感觉非常非常 nb 啊，有各种各样我需要了解的东西
 
+首先要在这个网站用 UT EID login
+
+https://cloud.wikis.utexas.edu/wiki/spaces/UWS/overview?mode=global
+
+然后去下边这个地址看具体的内容
+
 https://cloud.wikis.utexas.edu/wiki/spaces/WNCG/overview
 
 
@@ -26,11 +32,41 @@ https://global.utexas.edu/isss/advising-services/insurance/waivers
 
 <img src="imgs/image-20260113130220379.png" alt="image-20260113130220379" style="zoom:50%;" />
 
-点进去是这个
+点进去是这个网址 https://utdirect.utexas.edu/apps/isss/insr/zs7752/
 
 <img src="imgs/image-20260113130243356.png" alt="image-20260113130243356" style="zoom:50%;" />
 
 这样就 waive 完成了
+
+
+### Summer insurance waiver
+
+在 wncg 的 wiki 这里有写
+
+https://cloud.wikis.utexas.edu/wiki/spaces/WNCG/pages/61932800/Graduate+Student+Appointments+and+Tuition
+
+![image-20260116045147837](D:\2026Spring\UsefulCommands\imgs\image-20260116045147837.png)
+
+我理解现在我可以直接 waive 掉 summer 的 insurance
+
+
+
+到时候得跟 intern 的公司确认一下保险的事情
+
+![image-20260116045233694](D:\2026Spring\UsefulCommands\imgs\image-20260116045233694.png)
+
+
+
+
+
+Questions about intl insurance should be directed to Texas Global: intlinsurance@austin.utexas.edu.
+
+
+
+
+
+
+
 
 ### 1098 T form 
 
@@ -39,6 +75,8 @@ https://global.utexas.edu/isss/advising-services/insurance/waivers
 https://utdirect.utexas.edu/acct/rec/irs1098t/index.WBX 
 
 ### UT Austin 选课
+
+UT Registration Plus
 
 https://utdirect.utexas.edu/registration/chooseSemester.WBX 
 

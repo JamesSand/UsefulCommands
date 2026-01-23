@@ -1,13 +1,59 @@
-### 链接服务器
+### login 链接服务器
+
+login command
+
+```
+# windows 这样不能 login
+ssh zhsha@stampede3.tacc.utexas.edu
+
+# window 这样 login 可以的
+ssh -m hmac-sha2-512 zhsha@stampede3.tacc.utexas.edu
+```
+
+config 要这样写
+```
+Host name
+    Hostname stampede3.tacc.utexas.edu
+    User zhsha
+    MACs hmac-sha2-512
+```
+
+
+
+### vscode accessibility setting 怎么关掉
+
+是的，我也是。我都不记得我当初是怎么开启它的了，但你可以试试：Ctrl + Shift + p 打开命令面板，搜索 Preferences: Open Accessibility Settings，就像 [u/Ok-Stick-6322](https://www.reddit.com/user/Ok-Stick-6322/) 说的那样，但对我来说，展开 Features > Accessibility > Accessibility: Hide Accessible View - 把它勾上就搞定了。
+
+
+
+### ray 报错 ModuleNotFoundError: No module named 'click'
+
+这个是因为你错误的把环境变量设置了
+
+```
+HOME=xxx 被覆盖了成了什么别的值
+```
+
+所以这个时候只需要用一个别的变量名就行了
 
 
 
 
 
-### TACC Command
+### Stampede3 坏掉的节点
+
+c561-007 
+
+c561-001
+
+c563-001
+
+
+
+
+### idev srun 拿计算节点
 
 这是两条指令，之后可能会经常用的到
-
 
 sbatch -p gh -N 1 -n 1 -t 24:00:00 -A ASC25082 \
  -J tacc-vscode --parsable --wrap="sleep infinity"
@@ -16,7 +62,34 @@ sbatch -p gh -N 1 -n 1 -t 24:00:00 -A ASC25082 \
 申请一个 debug 计算节点
 
 ```bash
-idev -p gh -N 1 -n 1 -t 24:00:00 -A ASC25082
+idev -p h100 -N 1 -n 1 -t 48:00:00 -- -w c561-006
+
+# 这个能够指定要哪些节点
+idev -p h100 -N 2 -n 2 -t 48:00:00 -- -w c561-[004,008]
+
+idev -p h100 -N 2 -n 2 -t 48:00:00 -- -w c562-[005-007]
+
+
+
+idev -p h100 -N 2 -n 2 --exclude=c561-001,c561-007 -t 48:00:00
+
+# 这是 vista 上的指令
+idev -p gh -N 1 -n 1 -t 48:00:00 -A ASC26009
+
+idev -p gh-dev -N 1 -n 1 -t 2:00:00 -A ASC26009
+
+sinfo -S+P -o "%18P %8a %20F"
+
+sinfo -p h100
+
+squeue -u $USER
+
+
+# tmux open mouse on
+Ctrl + b
+:
+
+set -g mouse on
 
 # 底下这个能用
 srun -J debug -N 1 -p gh-dev -n 28 -t 2:00:00 -A ASC25082  --pty /bin/bash
@@ -24,9 +97,13 @@ srun -J debug -N 1 -p gh-dev -n 28 -t 2:00:00 -A ASC25082  --pty /bin/bash
 
 ### TACC Docs
 
-这是 TACC 的 docs
+这是 TACC Vista 的文档
 
 https://docs.google.com/document/d/1URcWe8mLQF8HMNre7vZwgk6TiRNxFxVBwK_HCcRXQdM/edit?usp=sharing 
+
+这是 stampede3 的文档 
+
+https://docs.tacc.utexas.edu/hpc/stampede3/ 
 
 
 
@@ -40,7 +117,24 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 
 
 
-### slurm
+### module
+
+```
+# 查看所有的 module
+module avail
+
+# 查看当前 load 了哪些 module
+module list
+
+module avail cuda
+module avail conda
+```
+
+
+
+
+
+### slurm 查看空闲节点
 
 ```bash
 sinfo -S+P -o "%18P %8a %20F"
@@ -60,6 +154,16 @@ gh-dev*            up       2/22/0/24
 
 
 ### Vscode Tunnel
+
+安装 https://code.visualstudio.com/docs/remote/tunnels 
+
+```
+curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64' --output vscode_cli.tar.gz
+
+tar -xf vscode_cli.tar.gz
+```
+
+这个似乎必须要在计算节点才能开，在 login 节点不行
 
 其实我已经安装好了，可执行文件在 workspace 下边，每次只需要到 `~/workspace` 下边跑一下
 
@@ -110,18 +214,29 @@ code tunnel user logout
 # setup bash like terminal
 export PS1='\u@\h:\w\$ '
 
-# setup scratch and work folder
-export SCRATCH=/scratch/10922/zhsha
-export WORK=/work/10922/zhsha/vista
-
 # add code tunnel code to system path
 export PATH="$PATH:$HOME/workspace"
 
 # setup useful command
 alias ll='ls -la'
-# fast change to scratch or work folder
-alias cds='cd "$SCRATCH"'
-alias cdw='cd "$WORK"'
+
+alias si='sinfo -S+P -o "%18P %8a %20F"'
+alias sq="squeue -u $USER"
+
+alias code="/home1/10922/zhsha/workspace/code"
+alias grp="cd /scratch/10922/zhsha/workspace/rotation-project"
+
+alias ll="ls -la"
+
+alias tl="tmux ls"
+
+tn() {
+  if [ -n "$1" ]; then
+    tmux new -s "$1"
+  else
+    tmux new
+  fi
+}
 
 
 ```

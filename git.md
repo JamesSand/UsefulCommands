@@ -15,6 +15,12 @@ https://github.com/zhuhanqing/Lucky_RL/compare/689ac9429a23816bb3124de8765bdc5ac
 
 
 
+### git add . 加错了文件 怎么都删掉
+
+```
+git reset
+```
+
 
 
 
