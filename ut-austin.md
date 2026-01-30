@@ -26,6 +26,8 @@ https://cloud.wikis.utexas.edu/wiki/spaces/WNCG/overview
 
 2 给 CS graduate office 发邮件  gradoffice@cs.utexas.edu 
 
+3 给 insurance advisor 发邮件 insuranceadvisor@austin.utexas.edu 
+
 
 
 明天去找一下他们
@@ -35,6 +37,10 @@ GDC 2.702
 
 Monday - Friday:
 8:00 am - 5:00 pm
+
+
+
+但是我明天还是去问问他们吧
 
 
 
@@ -58,7 +64,7 @@ https://utaustin.myahpcare.com/waiver
 
 
 
-但是我明天还是去问问他们吧
+
 
 
 

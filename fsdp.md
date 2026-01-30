@@ -1,5 +1,11 @@
 
 
+### fsdp 里边的 loss 是怎么计算的
+
+
+
+
+
 
 
 ### All Reduce

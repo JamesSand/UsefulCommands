@@ -1,3 +1,152 @@
+
+$$
+\frac{dL}{dU} = \frac{dL}{dW} \frac{dW}{dU} 
+$$
+
+
+$$
+\frac{dL}{dU} =  momentum / sqrt{v} \frac{dW}{dU}
+$$
+
+
+
+主要是在 2e-6 svd muon adam 上试一试
+
+1 trace 要试一下
+
+2 history 信息要试一下 SGD 上做 0.9 -》 0.5 ；adam 的 0.999 的 V 也要调小
+
+2.1 tangent projection。
+
+要不要 scedule grad norm？
+
+adam history 信息缩小
+
+adam vaiance 信息缩小
+
+
+
+3 U V 搞出来
+
+
+
+
+
+1 用 trace 来 constraint ，证明在 adam 5e-6 能 work
+
+2 现在的实验，收敛更快
+
+
+
+tricks to try
+
+1 plain sgd + tangent gradient / VS / plain sgd
+
+2 change sgd momemtom to adam style mometum 
+
+3 step norm scale with sqrt(R). 
+
+4 gradient cliping when grad is large. See verl code actor
+
+
+
+tacc 2-4 node
+
+qwen3 1.7b 全部都 try 出来
+
+
+
+5 U V statics. Geo distance. Grad norm. U V momemtum, U V variance
+
+
+
+看一下 U 和 V 的 statics
+
+
+
+Yes. I agree the sig value will change numerically. 
+
+
+
+But the relative difference is only
+
+
+
+
+
+adam
+
+二阶全关掉，一阶调小
+
+
+
+下边这两个开四组
+
+sgd momentum: 1e-5 / 1e-4 / 1e-3, momentum 0.9 
+
+msign 之前的 U 做一个 normalization，这个可以做到 Delta U 或者 U + Delta U 上边去
+
+
+
+1e-5 mom 0.9
+
+1e-4 mom 0.9
+
+1e-3 mom 0.9
+
+1e-4 mom 0.0
+
+1e-4 mom 0.9 , norm before step
+
+1e-4 mom 0.9 , norm before msign
+
+
+
+adam svd muon 2e-6 norm before step
+
+adam svd muon 2e-6 norm before msign
+
+adam svd muon 3e-6 norm before step
+
+adam svd muon 3e-6 norm before msgin
+
+
+
+
+
+U: m * r  |U|_F = sqrt(r)
+
+
+
+1 lr 后期可以 decay
+
+2 U V 想一想怎么加 constraint
+
+3 tangent space 上的 gradient
+
+
+
+
+
+### windows 开启卓越性能模式
+
+https://zhuanlan.zhihu.com/p/590232882 
+
+打开终端，输入
+
+```
+powercfg /getactivescheme
+
+powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
+
+
+```
+
+
+
+
+
+
 ### login 链接服务器
 
 login command
@@ -48,6 +197,8 @@ c561-001
 
 c563-001
 
+c562-005 有一个 GPU 挂掉了，这个最后一个 GPU 总是掉
+
 
 
 
@@ -69,6 +220,22 @@ idev -p h100 -N 2 -n 2 -t 48:00:00 -- -w c561-[004,008]
 
 idev -p h100 -N 2 -n 2 -t 48:00:00 -- -w c562-[005-007]
 
+idev -p h100 -N 2 -n 2 -t 48:00:00 -- -w c562-006
+
+idev -p h100 -N 2 -n 2 -t 48:00:00 -E
+
+idev -p h100 -N 1 -n 1 -t 48:00:00 -- --exclude=c561-007,c561-001,c563-001,c562-005
+
+idev -p h100 -N 2 -n 2 -t 48:00:00 -- --exclude=c561-007,c561-001,c563-001,c562-005
+
+idev -p h100 -N 3 -n 3 -t 48:00:00 -- --exclude=c561-007,c561-001,c563-001,c562-005
+
+sprio -u zhsha
+
+sprio -p h100
+
+
+idev_email_address shazhizhou0@gmail.com
 
 
 idev -p h100 -N 2 -n 2 --exclude=c561-001,c561-007 -t 48:00:00
