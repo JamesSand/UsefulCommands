@@ -1,132 +1,4 @@
 
-$$
-\frac{dL}{dU} = \frac{dL}{dW} \frac{dW}{dU} 
-$$
-
-
-$$
-\frac{dL}{dU} =  momentum / sqrt{v} \frac{dW}{dU}
-$$
-
-
-
-主要是在 2e-6 svd muon adam 上试一试
-
-1 trace 要试一下
-
-2 history 信息要试一下 SGD 上做 0.9 -》 0.5 ；adam 的 0.999 的 V 也要调小
-
-2.1 tangent projection。
-
-要不要 scedule grad norm？
-
-adam history 信息缩小
-
-adam vaiance 信息缩小
-
-
-
-3 U V 搞出来
-
-
-
-
-
-1 用 trace 来 constraint ，证明在 adam 5e-6 能 work
-
-2 现在的实验，收敛更快
-
-
-
-tricks to try
-
-1 plain sgd + tangent gradient / VS / plain sgd
-
-2 change sgd momemtom to adam style mometum 
-
-3 step norm scale with sqrt(R). 
-
-4 gradient cliping when grad is large. See verl code actor
-
-
-
-tacc 2-4 node
-
-qwen3 1.7b 全部都 try 出来
-
-
-
-5 U V statics. Geo distance. Grad norm. U V momemtum, U V variance
-
-
-
-看一下 U 和 V 的 statics
-
-
-
-Yes. I agree the sig value will change numerically. 
-
-
-
-But the relative difference is only
-
-
-
-
-
-adam
-
-二阶全关掉，一阶调小
-
-
-
-下边这两个开四组
-
-sgd momentum: 1e-5 / 1e-4 / 1e-3, momentum 0.9 
-
-msign 之前的 U 做一个 normalization，这个可以做到 Delta U 或者 U + Delta U 上边去
-
-
-
-1e-5 mom 0.9
-
-1e-4 mom 0.9
-
-1e-3 mom 0.9
-
-1e-4 mom 0.0
-
-1e-4 mom 0.9 , norm before step
-
-1e-4 mom 0.9 , norm before msign
-
-
-
-adam svd muon 2e-6 norm before step
-
-adam svd muon 2e-6 norm before msign
-
-adam svd muon 3e-6 norm before step
-
-adam svd muon 3e-6 norm before msgin
-
-
-
-
-
-U: m * r  |U|_F = sqrt(r)
-
-
-
-1 lr 后期可以 decay
-
-2 U V 想一想怎么加 constraint
-
-3 tangent space 上的 gradient
-
-
-
-
 
 ### windows 开启卓越性能模式
 
@@ -135,11 +7,29 @@ https://zhuanlan.zhihu.com/p/590232882
 打开终端，输入
 
 ```
+# 看当前用的是哪个方案
 powercfg /getactivescheme
 
+# 查看所有的性能方案
+powercfg /list
+
+# 注册卓越性能模式到 powercfg 里边去
 powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
 
+```
 
+运行完注册卓越性能的指令你会得到这个
+
+```
+PS D:\UsefulCommands> powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
+电源方案 GUID: b188249b-1f48-4b4f-84f4-d43c145879de  (卓越性能)
+```
+
+把这里的电源方案好复制到下边就行了
+
+```
+# 激活卓越性能方案
+powercfg /setactive <power config ID>
 ```
 
 
@@ -161,7 +51,7 @@ ssh -m hmac-sha2-512 zhsha@stampede3.tacc.utexas.edu
 
 config 要这样写
 ```
-Host name
+Host stampede3
     Hostname stampede3.tacc.utexas.edu
     User zhsha
     MACs hmac-sha2-512
@@ -213,6 +103,8 @@ sbatch -p gh -N 1 -n 1 -t 24:00:00 -A ASC25082 \
 申请一个 debug 计算节点
 
 ```bash
+idev -p icx -N 1 -n 1 -t 12:00:00 
+
 idev -p h100 -N 1 -n 1 -t 48:00:00 -- -w c561-006
 
 # 这个能够指定要哪些节点
@@ -222,6 +114,7 @@ idev -p h100 -N 2 -n 2 -t 48:00:00 -- -w c562-[005-007]
 
 idev -p h100 -N 2 -n 2 -t 48:00:00 -- -w c562-006
 
+# 这个是排队排到之后给你自动发 email 的
 idev -p h100 -N 2 -n 2 -t 48:00:00 -E
 
 idev -p h100 -N 1 -n 1 -t 48:00:00 -- --exclude=c561-007,c561-001,c563-001,c562-005
@@ -230,8 +123,10 @@ idev -p h100 -N 2 -n 2 -t 48:00:00 -- --exclude=c561-007,c561-001,c563-001,c562-
 
 idev -p h100 -N 3 -n 3 -t 48:00:00 -- --exclude=c561-007,c561-001,c563-001,c562-005
 
+# 这个是看现在我的 job 的 priority 的
 sprio -u zhsha
 
+# 这个是看 h100 这个 cluster 上的 job 的 priority 的
 sprio -p h100
 
 
@@ -262,7 +157,7 @@ set -g mouse on
 srun -J debug -N 1 -p gh-dev -n 28 -t 2:00:00 -A ASC25082  --pty /bin/bash
 ```
 
-### TACC Docs
+### Vista Stampede3 Docs
 
 这是 TACC Vista 的文档
 
@@ -284,7 +179,28 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 
 
 
-### module
+### conda 安装 tree
+
+```
+conda install -c conda-forge tree -y
+
+# 通过这个指令验证
+which tree
+
+# 如果要打印一个 folder 下的两层目录结构，用这个
+tree -L 2 <folder>
+
+# 只想看目录，不想看文件
+tree -L 2 -d <folder>
+```
+
+
+
+
+
+
+
+### server load module
 
 ```
 # 查看所有的 module

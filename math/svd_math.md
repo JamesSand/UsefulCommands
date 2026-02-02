@@ -1,9 +1,5 @@
 
 
-### Reiman
-
-
-
 ### SVD related
 
 SVD 分解的公式
@@ -17,9 +13,6 @@ $$
 这个文章介绍的非常好，有很多数学推导，但是这里我们只记录最终的结论。
 
 https://xyfjason.top/blog-main/2024/03/02/%E5%AD%90%E7%A9%BA%E9%97%B4%E7%9A%84%E8%B7%9D%E7%A6%BB/
-
-
-
 
 
 

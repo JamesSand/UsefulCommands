@@ -5,6 +5,126 @@
 
 
 
+## 这些 idea 都不 work
+
+主要是在 2e-6 svd muon adam 上试一试
+
+1 trace 要试一下
+
+2 history 信息要试一下 SGD 上做 0.9 -》 0.5 ；adam 的 0.999 的 V 也要调小
+
+2.1 tangent projection。
+
+要不要 scedule grad norm？
+
+adam history 信息缩小
+
+adam vaiance 信息缩小
+
+
+
+3 U V 搞出来
+
+
+
+
+
+1 用 trace 来 constraint ，证明在 adam 5e-6 能 work
+
+2 现在的实验，收敛更快
+
+
+
+tricks to try
+
+1 plain sgd + tangent gradient / VS / plain sgd
+
+2 change sgd momemtom to adam style mometum 
+
+3 step norm scale with sqrt(R). 
+
+4 gradient cliping when grad is large. See verl code actor
+
+
+
+tacc 2-4 node
+
+qwen3 1.7b 全部都 try 出来
+
+
+
+5 U V statics. Geo distance. Grad norm. U V momemtum, U V variance
+
+
+
+看一下 U 和 V 的 statics
+
+
+
+Yes. I agree the sig value will change numerically. 
+
+
+
+But the relative difference is only
+
+
+
+
+
+adam
+
+二阶全关掉，一阶调小
+
+
+
+下边这两个开四组
+
+sgd momentum: 1e-5 / 1e-4 / 1e-3, momentum 0.9 
+
+msign 之前的 U 做一个 normalization，这个可以做到 Delta U 或者 U + Delta U 上边去
+
+
+
+1e-5 mom 0.9
+
+1e-4 mom 0.9
+
+1e-3 mom 0.9
+
+1e-4 mom 0.0
+
+1e-4 mom 0.9 , norm before step
+
+1e-4 mom 0.9 , norm before msign
+
+
+
+adam svd muon 2e-6 norm before step
+
+adam svd muon 2e-6 norm before msign
+
+adam svd muon 3e-6 norm before step
+
+adam svd muon 3e-6 norm before msgin
+
+
+
+
+
+U: m * r  |U|_F = sqrt(r)
+
+
+
+1 lr 后期可以 decay
+
+2 U V 想一想怎么加 constraint
+
+3 tangent space 上的 gradient
+
+
+
+
+
 ## High level Ideas
 
 We hypothesis that RL on LLM actually learn some matrix rotation operations. We want to see if we can use this insight to find a better model merging method. 
