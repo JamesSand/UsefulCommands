@@ -1,5 +1,15 @@
 
 
+
+
+
+
+### Austin 的吃的
+
+我真的要哭死了，来美国之前整理了这么多，但是一家都没有去吃过
+
+https://docs.google.com/document/d/1O2AcR0iaFiPkFLSMFryYKLJwDKe48fVvdXJNtdjywtU/edit?usp=sharing 
+
 ### ECE student wiki
 
 这个感觉非常非常 nb 啊，有各种各样我需要了解的东西
@@ -18,7 +28,7 @@ https://cloud.wikis.utexas.edu/wiki/spaces/WNCG/overview
 
 收到了这个邮件，看起来必须得处理一下了
 
-<img src="D:\2026Spring\UsefulCommands\imgs\image-20260122215022453.png" alt="image-20260122215022453" style="zoom:50%;" />
+<img src="imgs\image-20260122215022453.png" alt="image-20260122215022453" style="zoom:50%;" />
 
 做了几个尝试
 
@@ -48,11 +58,11 @@ Monday - Friday:
 
 https://utbenefit-eds.utsystem.edu/shibboleth-ds/index.html?entityID=https%3A%2F%2Futbenefitmembersso.utsystem.edu%2Fsimplesaml%2Fmodule.php%2Fsaml%2Fsp%2Fmetadata.php%2Fdefault-sp&return=https%3A%2F%2Futbenefitmembersso.utsystem.edu%2Fsimplesaml%2Fmodule.php%2Fsaml%2Fsp%2Fdiscoresp.php%3FAuthID%3D_4e398c53134ece2c0a3890f9bbca2dfff670587dca%253Ahttps%253A%252F%252Futbenefitmembersso.utsystem.edu%252Fsimplesaml%252Fsaml2%252Fidp%252FSSOService.php%253Fspentityid%253Dbenefitfocus.com%25253Asp%25253Amember%2526cookieTime%253D1756444051&returnIDParam=idpentityid
 
-![image-20260122223053501](D:\2026Spring\UsefulCommands\imgs\image-20260122223053501.png)
+![image-20260122223053501](imgs\image-20260122223053501.png)
 
 这是最原始的邮件
 
-![image-20260122223602268](D:\2026Spring\UsefulCommands\imgs\image-20260122223602268.png)
+![image-20260122223602268](imgs\image-20260122223602268.png)
 
 顺着这个链接点进来登陆之后只能看到这个
 
@@ -60,7 +70,7 @@ https://utaustin.myahpcare.com/waiver
 
 我真的是 wtf 了
 
-![image-20260122223631095](D:\2026Spring\UsefulCommands\imgs\image-20260122223631095.png)
+![image-20260122223631095](imgs\image-20260122223631095.png)
 
 
 
@@ -119,7 +129,7 @@ https://global.utexas.edu/isss/advising-services/insurance/waivers
 
 https://cloud.wikis.utexas.edu/wiki/spaces/WNCG/pages/61932800/Graduate+Student+Appointments+and+Tuition
 
-![image-20260116045147837](D:\2026Spring\UsefulCommands\imgs\image-20260116045147837.png)
+![image-20260116045147837](imgs\image-20260116045147837.png)
 
 我理解现在我可以直接 waive 掉 summer 的 insurance
 
@@ -127,7 +137,7 @@ https://cloud.wikis.utexas.edu/wiki/spaces/WNCG/pages/61932800/Graduate+Student+
 
 到时候得跟 intern 的公司确认一下保险的事情
 
-![image-20260116045233694](D:\2026Spring\UsefulCommands\imgs\image-20260116045233694.png)
+![image-20260116045233694](imgs\image-20260116045233694.png)
 
 
 

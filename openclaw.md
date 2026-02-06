@@ -13,6 +13,10 @@ openclaw status
 openclaw configure
 ```
 
+### openclaw 配置 slack bot
+
+https://milvus.io/zh/blog/stepbystep-guide-to-setting-up-openclaw-previously-clawdbotmoltbot-with-slack.md 
+
 
 ### clawhub
 
