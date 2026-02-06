@@ -12,6 +12,8 @@
 pip install flash-attn==2.7.4.post1 --no-build-isolation
 
 pip install flash_attn==2.8.0.post2 --no-build-isolation
+
+pip install flash_attn==2.8.3 --no-build-isolation
 ```
 
 就是说在 build wheel 的时候不是用的单独的隔离环境，而是直接在 python 现在的环境里边安装

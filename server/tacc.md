@@ -105,6 +105,8 @@ sbatch -p gh -N 1 -n 1 -t 24:00:00 -A ASC25082 \
 ```bash
 idev -p icx -N 1 -n 1 -t 12:00:00 
 
+idev -p skx -N 1 -n 1 -t 12:00:00 
+
 idev -p h100 -N 1 -n 1 -t 48:00:00 -- -w c561-006
 
 # 这个能够指定要哪些节点
@@ -123,11 +125,17 @@ idev -p h100 -N 2 -n 2 -t 48:00:00 -- --exclude=c561-007,c561-001,c563-001,c562-
 
 idev -p h100 -N 3 -n 3 -t 48:00:00 -- --exclude=c561-007,c561-001,c563-001,c562-005
 
+idev -p h100 -N 3 -n 3 -t 11:00:00 -- --exclude=c561-007,c561-001,c563-001,c562-005
+
 # 这个是看现在我的 job 的 priority 的
 sprio -u zhsha
 
 # 这个是看 h100 这个 cluster 上的 job 的 priority 的
-sprio -p h100
+sprio -p h100 -S -Y
+
+# 按照 prioirty 从大到小排一下
+sprio -p gh -S -Y
+sprio -p gh-dev -S -Y
 
 
 idev_email_address shazhizhou0@gmail.com
@@ -136,7 +144,11 @@ idev_email_address shazhizhou0@gmail.com
 idev -p h100 -N 2 -n 2 --exclude=c561-001,c561-007 -t 48:00:00
 
 # 这是 vista 上的指令
-idev -p gh -N 1 -n 1 -t 48:00:00 -A ASC26009
+idev -p gh -N 1 -n 1 -t 12:00:00 -A ASC26009
+
+idev -p gg -N 1 -n 1 -t 12:00:00 -A ASC26009
+
+idev -p gh -N 8 -n 8 -t 48:00:00 -A ASC26009
 
 idev -p gh-dev -N 1 -n 1 -t 2:00:00 -A ASC26009
 
@@ -179,6 +191,88 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 
 
 
+### 装 verl
+
+https://github.com/cvoelcker/verl_setup_tacc/tree/main 
+
+参考我的仓库最新的版本
+
+https://github.com/JamesSand/verl_setup_tacc 
+
+
+
+
+
+### 装 flash attention
+
+这个方法目前没有装成功
+
+```
+module load cuda/12.4
+module load gcc/13
+```
+
+
+
+这个是看你的 torch 是不是支持 cuda
+
+https://github.com/Dao-AILab/flash-attention/issues/1736#issuecomment-3670604877
+
+```
+python - <<EOF
+import torch
+print("PyTorch:", torch.__version__)
+print("CUDA available:", torch.cuda.is_available())
+print("CUDA version used by PyTorch:", torch.version.cuda)
+EOF
+```
+
+
+
+这个是怎么在 aarch 架构上装 torch 280
+
+https://github.com/pytorch/pytorch/issues/160162#issue-3302453418
+
+```
+
+pip install torch==2.9.0 --index-url https://download.pytorch.org/whl/cu128
+
+# torch 280 在 aarch64 上没有，至有 torch290
+pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cu128
+```
+
+
+
+用这个脚本装 flash attention 283
+
+```
+ pip install flash_attn==2.8.3 --no-build-isolation
+```
+
+
+
+最终的报错是一个虚假的 flash attn 的 whl
+
+```
+ww8/flash_attn-2.8.3-cp312-cp312-linux_aarch64.whl
+      error: [Errno 18] Invalid cross-device link: 'flash_attn-2.8.3+cu12torch2.9cxx11abiTRUE-cp312-cp312-linux_aarch64.whl' -> '/scratch/10922/zhsha/pip-cache~/wheels/3d/59/46/f282c12c73dd4bb3c2e3fe199f1a0d0f8cec06df0cccfeee27/tmpvypslk_y/.tmp-vay8nww8/flash_attn-2.8.3-cp312-cp312-linux_aarch64.whl'
+      [end of output]
+
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+  ERROR: Failed building wheel for flash_attn
+Failed to build flash_attn
+error: failed-wheel-build-for-install
+
+× Failed to build installable wheels for some pyproject.toml based projects
+╰─> flash_attn
+(best176) zhsha@c608-001:~$ ls /scratch/10922/zhsha/pip-cache~/wheels/3d/59/46/f282c12c73dd4bb3c2e3fe199f1a0d0f8cec06df0cccfeee27/tmpvypslk_y/.tmp-vay8nww8/flash_attn-2.8.3-cp312-cp312-linux_aarch64.whl
+ls: cannot access '/scratch/10922/zhsha/pip-cache~/wheels/3d/59/46/f282c12c73dd4bb3c2e3fe199f1a0d0f8cec06df0cccfeee27/tmpvypslk_y/.tmp-vay8nww8/flash_attn-2.8.3-cp312-cp312-linux_aarch64.whl': No such file or directory
+```
+
+
+
+
+
 ### conda 安装 tree
 
 ```
@@ -210,6 +304,9 @@ module avail
 module list
 
 module avail cuda
+
+module avail gcc
+
 module avail conda
 ```
 
@@ -220,6 +317,10 @@ module avail conda
 ### slurm 查看空闲节点
 
 ```bash
+# chi 哥的 server
+sinfo -N -o "%N %P %G %D %t"
+
+# tacc 上一般大家这么用
 sinfo -S+P -o "%18P %8a %20F"
 ```
 
@@ -339,6 +440,25 @@ ln -s /scratch/10922/zhsha/miniconda3 miniconda3
 
 
 
+
+### 坏掉的 conda 怎么用
+
+如果在移动 conda 的过程中，出现移动到一半的时候中断了，可能回到导致 conda 的环境损坏了，这个时候会出现这种情况
+
+```
+HunyuanVideo             /scratch/11018/zhizhou/conda/envs/HunyuanVideo
+opensora                 /scratch/11018/zhizhou/conda/envs/opensora
+rae                      /scratch/11018/zhizhou/conda/envs/rae
+base                     /work/11018/zhizhou/stampede3/miniconda3
+best176              *   /work/11018/zhizhou/stampede3/miniconda3/envs/best176
+flow_grpo                /work/11018/zhizhou/stampede3/miniconda3/envs/flow_grpo
+```
+
+这个时候激活环境的话，可以用绝对路径，这样也能凑活能用
+
+```
+conda activate /work/11018/zhizhou/stampede3/miniconda3/envs/best176
+```
 
 
 
