@@ -1,4 +1,6 @@
 
+hugo 是一个 blog 网站，但是目前我已经弃用了
+
 Install Hugo
 
 using winget. Official quick start [link](https://gohugo.io/installation/windows/)

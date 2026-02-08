@@ -1,5 +1,18 @@
 
 
+在 .tmux.conf 中添加以下内容激活鼠标
+
+```bash
+set -g mouse on
+```
+
+如果是已经开了 tmux 的话，输入以下命令激活鼠标
+
+Ctrl + b, : 然后 set -g mouse on
+
+
+
+
 ### tmux 关掉所有 session
 
 ```

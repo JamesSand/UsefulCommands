@@ -1,5 +1,6 @@
 
 
+
 ### Idea3: Noisy tools and confidential verification
 
 问题的核心 idea 是我们要做一个能够探索现在 reasoning agent reason 的边界的方法。具体来说，我们想做的事情是控制在 tool use 的场景下，控制 agent 通过调用 tool 得到的外部世界信息，来探索 agent 在 tool use 不准确的情况下，究竟能够忍受多大的鲁棒性。以下是具体的试试方案
