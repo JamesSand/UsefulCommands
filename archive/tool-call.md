@@ -132,7 +132,7 @@ LoopTool
 
 https://arxiv.org/pdf/2511.09148 
 
-![image-20251113211039426](imgs/image-20251113211039426.png)
+![image-20251113211039426](../imgs/image-20251113211039426.png)
 
 这个是一个自动化数据增强的 pipeline。
 

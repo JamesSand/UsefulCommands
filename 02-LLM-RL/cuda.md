@@ -6,7 +6,7 @@
 
 https://blog.csdn.net/Blackoutdragon/article/details/130233562
 
-<img src="imgs/image-20251104155936330.png" alt="image-20251104155936330" style="zoom:30%;" />
+<img src="../imgs/image-20251104155936330.png" alt="image-20251104155936330" style="zoom:30%;" />
 
 一张图读懂
 

@@ -22,14 +22,14 @@ agent tool adaption 被分为四种情形
 #### 1.1 agent use tool 
    1. 优化 agent 调用 tool 的 action
 
-![image-20260206171909852](./imgs/image-20260206171909852.png)
+![image-20260206171909852](../../imgs/image-20260206171909852.png)
 
 #### 1.2 agent tool output 
 
 1. 直接优化 agent + tool 结果的 output
 2. 对于 SFT 场景下，只优化最终的 output；对于 RL 的场景下，action 和 output 都会被优化到
 
-![image-20260206172017689](./imgs/image-20260206172017689.png)
+![image-20260206172017689](../../imgs/image-20260206172017689.png)
 
 
 
@@ -42,14 +42,14 @@ agent agnostic 通过调这个 tool 来更好适应 agent
 1. 这个好像没有什么人做，感觉这个分类像是硬编出来的
 
 
- ![image-20260206172209338](./imgs/image-20260206172209338.png)
+ ![image-20260206172209338](../../imgs/image-20260206172209338.png)
 
 #### 2.2 agent supervised tool adaptation
 
 1. 通过 agent 的反馈结果优化 tool 本身
 1. 这里基本上都是 model as a tool。用这种方式才能说是去 tune 这个 tool
 
-![image-20260206172516771](./imgs/image-20260206172516771.png)
+![image-20260206172516771](../../imgs/image-20260206172516771.png)
 
 这里边有几个有趣的 paper
 

@@ -28,7 +28,7 @@ https://cloud.wikis.utexas.edu/wiki/spaces/WNCG/overview
 
 收到了这个邮件，看起来必须得处理一下了
 
-<img src="imgs\image-20260122215022453.png" alt="image-20260122215022453" style="zoom:50%;" />
+<img src="../imgs/image-20260122215022453.png" alt="image-20260122215022453" style="zoom:50%;" />
 
 做了几个尝试
 
@@ -58,11 +58,11 @@ Monday - Friday:
 
 https://utbenefit-eds.utsystem.edu/shibboleth-ds/index.html?entityID=https%3A%2F%2Futbenefitmembersso.utsystem.edu%2Fsimplesaml%2Fmodule.php%2Fsaml%2Fsp%2Fmetadata.php%2Fdefault-sp&return=https%3A%2F%2Futbenefitmembersso.utsystem.edu%2Fsimplesaml%2Fmodule.php%2Fsaml%2Fsp%2Fdiscoresp.php%3FAuthID%3D_4e398c53134ece2c0a3890f9bbca2dfff670587dca%253Ahttps%253A%252F%252Futbenefitmembersso.utsystem.edu%252Fsimplesaml%252Fsaml2%252Fidp%252FSSOService.php%253Fspentityid%253Dbenefitfocus.com%25253Asp%25253Amember%2526cookieTime%253D1756444051&returnIDParam=idpentityid
 
-![image-20260122223053501](imgs\image-20260122223053501.png)
+![image-20260122223053501](../imgs/image-20260122223053501.png)
 
 这是最原始的邮件
 
-![image-20260122223602268](imgs\image-20260122223602268.png)
+![image-20260122223602268](../imgs/image-20260122223602268.png)
 
 顺着这个链接点进来登陆之后只能看到这个
 
@@ -70,7 +70,7 @@ https://utaustin.myahpcare.com/waiver
 
 我真的是 wtf 了
 
-![image-20260122223631095](imgs\image-20260122223631095.png)
+![image-20260122223631095](../imgs/image-20260122223631095.png)
 
 
 
@@ -104,7 +104,7 @@ https://www.bcbstx.com/member
 
 https://utdirect.utexas.edu/acct/fb/waivers/index.WBX 
 
-![image-20260113130615580](imgs/image-20260113130615580.png)
+![image-20260113130615580](../imgs/image-20260113130615580.png)
 
 
 
@@ -114,11 +114,11 @@ https://utdirect.utexas.edu/acct/fb/waivers/index.WBX
 
 https://global.utexas.edu/isss/advising-services/insurance/waivers 
 
-<img src="imgs/image-20260113130220379.png" alt="image-20260113130220379" style="zoom:50%;" />
+<img src="../imgs/image-20260113130220379.png" alt="image-20260113130220379" style="zoom:50%;" />
 
 点进去是这个网址 https://utdirect.utexas.edu/apps/isss/insr/zs7752/
 
-<img src="imgs/image-20260113130243356.png" alt="image-20260113130243356" style="zoom:50%;" />
+<img src="../imgs/image-20260113130243356.png" alt="image-20260113130243356" style="zoom:50%;" />
 
 这样就 waive 完成了
 
@@ -129,7 +129,7 @@ https://global.utexas.edu/isss/advising-services/insurance/waivers
 
 https://cloud.wikis.utexas.edu/wiki/spaces/WNCG/pages/61932800/Graduate+Student+Appointments+and+Tuition
 
-![image-20260116045147837](imgs\image-20260116045147837.png)
+![image-20260116045147837](../imgs/image-20260116045147837.png)
 
 我理解现在我可以直接 waive 掉 summer 的 insurance
 
@@ -137,7 +137,7 @@ https://cloud.wikis.utexas.edu/wiki/spaces/WNCG/pages/61932800/Graduate+Student+
 
 到时候得跟 intern 的公司确认一下保险的事情
 
-![image-20260116045233694](imgs\image-20260116045233694.png)
+![image-20260116045233694](../imgs/image-20260116045233694.png)
 
 
 
@@ -155,7 +155,7 @@ Questions about intl insurance should be directed to Texas Global: intlinsurance
 
 https://t.e2ma.net/click/cn4uoq/sv9w5rph/wmh4ycb 
 
-<img src="imgs/image-20260116200959779.png" alt="image-20260116200959779" style="zoom:50%;" />
+<img src="../imgs/image-20260116200959779.png" alt="image-20260116200959779" style="zoom:50%;" />
 
 W2 的作用
 
@@ -294,14 +294,14 @@ GDC 的 printer 没法用 windows 的电脑链接，所以只能去EER 7 楼的 
 
 
 
-<img src="imgs/image-20251002143047549.png" alt="image-20251002143047549" style="zoom:33%;" />
+<img src="../imgs/image-20251002143047549.png" alt="image-20251002143047549" style="zoom:33%;" />
 
 drive 的型号要选 Microsoft PCL6 ，不能选 text only，否则 pdf 打出来是乱码
 
-<img src="imgs/image-20251002143141778.png" alt="image-20251002143141778" style="zoom:33%;" />
+<img src="../imgs/image-20251002143141778.png" alt="image-20251002143141778" style="zoom:33%;" />
 
 打印的纸张要选美国信纸（Mac），在 Windows 下边要选 信纸
 
-<img src="imgs/image-20251002143628302.png" alt="image-20251002143628302" style="zoom:50%;" />
+<img src="../imgs/image-20251002143628302.png" alt="image-20251002143628302" style="zoom:50%;" />
 
 如果文件过大的话，可能会卡死。但是取消任务之后却又能打印出来，不知道咋回事。这个可以等之后有时间再解决一下

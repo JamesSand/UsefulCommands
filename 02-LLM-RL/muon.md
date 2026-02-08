@@ -68,7 +68,7 @@ https://docs.pytorch.org/docs/stable/generated/torch.optim.Muon.html#torch.optim
 
 https://github.com/pytorch/pytorch/blob/02aee3b59c0bd75291bab841cb30f8cd66335ef2/torch/optim/_muon.py#L285 
 
-<img src="imgs/image-20251226173753482.png" alt="image-20251226173753482" style="zoom:30%;" />
+<img src="../imgs/image-20251226173753482.png" alt="image-20251226173753482" style="zoom:30%;" />
 
 decoupled weight decay 说明是把 weight decay 和 loss 解耦，不像传统的把 weight decay 加到 loss 里边去
 
