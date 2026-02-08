@@ -54,15 +54,15 @@ Actor critic
 
 主要区别是 advantage 的 scaling。GRPO 是用的组内均值和组内的标准差
 
-<img src="imgs/image-20251119162314955.png" alt="image-20251119162314955" style="zoom:33%;" />
+<img src="../imgs/image-20251119162314955.png" alt="image-20251119162314955" style="zoom:33%;" />
 
 REINFORCE++用的是全局均值和全局标准差
 
-<img src="imgs/image-20251119162558386.png" alt="image-20251119162558386" style="zoom:33%;" />
+<img src="../imgs/image-20251119162558386.png" alt="image-20251119162558386" style="zoom:33%;" />
 
 REINFORCE++ w/baseline 指的是 group-based 的版本
 
-<img src="imgs/image-20251119163021871.png" alt="image-20251119163021871" style="zoom:33%;" />
+<img src="../imgs/image-20251119163021871.png" alt="image-20251119163021871" style="zoom:33%;" />
 
 用的是组内均值和 batch 的方差
 
@@ -74,7 +74,7 @@ https://zhuanlan.zhihu.com/p/32368626065
 
 DAPO 在 GRPO 上增加了 4 个技术
 
-<img src="imgs/image-20251018121415792.png" alt="image-20251018121415792" style="zoom:50%;" />
+<img src="../imgs/image-20251018121415792.png" alt="image-20251018121415792" style="zoom:50%;" />
 
 这里第四个技术对应的是 overlong penalty buffer
 

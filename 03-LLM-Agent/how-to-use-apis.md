@@ -83,7 +83,7 @@ https://openreview.net/forum?id=UOzxviKVFO
 
 相当于在每一个 task rollout 结束的时候，agent 自己生成一个 tips。之后的 rollouts 是 tips augment generation. 
 
-<img src="imgs/image-20251119170121815.png" alt="image-20251119170121815" style="zoom:50%;" />
+<img src="../imgs/image-20251119170121815.png" alt="image-20251119170121815" style="zoom:50%;" />
 
 
 
