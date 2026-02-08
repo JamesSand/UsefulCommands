@@ -18,7 +18,7 @@ https://github.com/punkpeye/awesome-mcp-servers/blob/main/README-zh.md
 
 
 
-<img src="imgs/image-20251023164940264.png" alt="image-20251023164940264" style="zoom:33%;" />
+<img src="../imgs/image-20251023164940264.png" alt="image-20251023164940264" style="zoom:33%;" />
 
 可以看到 MCP server 似乎是一个集成 tool 的工具
 
@@ -26,7 +26,7 @@ https://github.com/punkpeye/awesome-mcp-servers/blob/main/README-zh.md
 
 #### MCP Host, Client, Server
 
-<img src="imgs/image-20251023165839140.png" alt="image-20251023165839140" style="zoom:33%;" />
+<img src="../imgs/image-20251023165839140.png" alt="image-20251023165839140" style="zoom:33%;" />
 
 区分一下 MCP host，client，server 的实现。可以这么理解
 

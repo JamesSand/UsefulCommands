@@ -2,7 +2,7 @@
 
 https://qxsoftware.github.io/Float-Point-Number-Precision.html
 
-<img src="imgs/image-20251105175126412.png" alt="image-20251105175126412" style="zoom:50%;" />
+<img src="../imgs/image-20251105175126412.png" alt="image-20251105175126412" style="zoom:50%;" />
 
 - exponent 是有偏移量的，因为需要表示小于 1 的数
 - fraction 部分的 1 是省略的，因为默认至少有一个 1
@@ -22,7 +22,7 @@ https://willendless.github.io/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/2021/05/30/cs
 
 https://zhuanlan.zhihu.com/p/673708074 
 
-<img src="imgs/image-20251105175445345.png" alt="image-20251105175445345" style="zoom:33%;" />
+<img src="../imgs/image-20251105175445345.png" alt="image-20251105175445345" style="zoom:33%;" />
 
 fp8 分为两种 e4m3 和 e5m2 
 
