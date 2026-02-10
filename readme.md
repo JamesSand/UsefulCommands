@@ -4,6 +4,7 @@
 
 [https://jamessand.github.io](https://jamessand.github.io) 
 
+**[English Version / 英文版本](./readme_en.md)**
 
 **Contribution Welcomed! 欢迎 PR!**
 
