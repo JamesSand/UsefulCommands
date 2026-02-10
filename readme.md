@@ -2,6 +2,10 @@
 
 > By JamesSand
 
+[https://jamessand.github.io](https://jamessand.github.io) 
+
+
+**Contribution Welcomed! 欢迎 PR!**
 
 这个仓库记录了我从 2025 年年初以来，生活中经历的所有事情。记录在此，为了让自己不要重蹈覆辙，也为了让后来之人不要重新踩我的坑
 
@@ -18,4 +22,9 @@
 - 08-Research-utils：科研工具，包括 LaTeX 使用、研究笔记、科研图表等
 - 09-Misc：其他杂项工具，包括 Hugo、PDF 处理、微信、Windows、英语学习等
 
+如果有什么问题可以在 issue 直接提
+
+有什么建议也欢迎 PR！
+
+联系邮箱：shazhizhou0@gmail.com
 
