@@ -28,6 +28,10 @@ npm i -g @openai/codex
 codex
 ```
 
+### codex 全局指令
+
+claude code 里边是 `CLAUDE.md` 对于 codex 而言是 `AGENTS.md` 
+
 
 ### codex 全自动
 
@@ -39,6 +43,8 @@ codex --yolo
 ```
 
 如果弱一点，可以用这个会更安全一些
+
+这个要放在 `~/.codex/config.toml` 里边
 ```
 approval_policy = "never"
 sandbox_mode    = "workspace-write"
