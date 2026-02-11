@@ -57,7 +57,7 @@ https://docs.aws.amazon.com/bedrock/latest/userguide/inference-profiles-support.
 
 
 
-#### 配置 vscode 里边的 claude code
+#### 配置 vscode claude code
 
 [在 VS Code 中使用 Claude Code - Claude Code Docs](https://code.claude.com/docs/zh-CN/vs-code)
 
@@ -86,6 +86,18 @@ https://docs.aws.amazon.com/bedrock/latest/userguide/inference-profiles-support.
 ```
 
 这个东西的问题是换模型的话，得在 setting 里边改，没法 cli 或者 vscode extension 里边直接改了。
+
+
+
+#### Amazon claude code pricing
+
+[亚马逊基岩定价 — AWS](https://aws.amazon.com/cn/bedrock/pricing/)
+
+![image-20260211000454461](./imgs/image-20260211000454461.png)
+
+haiku 是 0.001，sonnet 是 0.003，opus 是 0.005 。大概是这个价格区间
+
+
 
 
 
