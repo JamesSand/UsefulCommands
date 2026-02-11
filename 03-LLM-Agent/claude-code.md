@@ -33,6 +33,62 @@
 
 
 
+### 用 amazon 的 credit 如何调用 claude code
+
+一些基本的 setting
+
+
+```
+export AWS_ACCESS_KEY_ID=<your ID here>
+export AWS_SECRET_ACCESS_KEY=<your key here>
+
+export CLAUDE_CODE_USE_BEDROCK=1
+export AWS_REGION=us-west-1
+export ANTHROPIC_MODEL='us.anthropic.claude-haiku-4-5-20251001-v1:0'
+export ANTHROPIC_SMALL_FAST_MODEL='us.anthropic.claude-haiku-4-5-20251001-v1:0'
+
+export CLAUDE_CODE_MAX_OUTPUT_TOKENS=128000
+export MAX_THINKING_TOKENS=32000
+```
+
+https://docs.aws.amazon.com/bedrock/latest/userguide/inference-profiles-support.html
+
+这个 setup 好了的话，应该命令行就能正常用了。
+
+
+
+#### 配置 vscode 里边的 claude code
+
+[在 VS Code 中使用 Claude Code - Claude Code Docs](https://code.claude.com/docs/zh-CN/vs-code)
+
+简单来说，只需要在 `~/.claude/settings.json` 里边做配置就行了
+
+把上边这些命令行的 args 写到 json 的 env 下边就行
+
+```json
+{
+  "alwaysThinkingEnabled": true,
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env" :{
+    "AWS_ACCESS_KEY_ID" : "<your ID here>",
+    "AWS_SECRET_ACCESS_KEY" : "<your key here>",
+
+    "CLAUDE_CODE_USE_BEDROCK": "1",
+    "AWS_REGION": "us-west-1",
+
+    "ANTHROPIC_MODEL": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+    "ANTHROPIC_SMALL_FAST_MODEL": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+    
+    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "128000",
+    "MAX_THINKING_TOKENS": "32000"
+  }
+}
+```
+
+这个东西的问题是换模型的话，得在 setting 里边改，没法 cli 或者 vscode extension 里边直接改了。
+
+
+
 ### Claude Code installation
 
 安装 claude code

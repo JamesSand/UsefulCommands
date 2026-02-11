@@ -1,10 +1,28 @@
 
 
+### Career Coach
+
+https://utexas.12twenty.com
+
+在这个上找，CNS 的只有 Po-Tsan Ku 这个人
+
+https://cns.utexas.edu/directory/po-tsan-ku 
+
+最早能约的时间是 3.3 号星期二
+
+po-tsan.ku@austin.utexas.edu 
+
+
+
+
+
 ### CMHC
 
 https://portal.uhs.utexas.edu/Home
 
-Counseling and mental health center. 
+Counseling and mental health center. location 在 SSB 的 5 楼
+
+这里的 counseling 和一般的 consulting 不是一个东西。这里的 counseling 一般指的是心理上的支持
 
 
 
