@@ -9,6 +9,8 @@ npm install -g @openai/codex
 
 ### windows wsl install codex
 
+> windows 下也可以安装 codex
+
 参考这里
 https://developers.openai.com/codex/windows/
 

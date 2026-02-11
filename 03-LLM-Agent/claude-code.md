@@ -153,6 +153,12 @@ https://docs.aws.amazon.com/bedrock/latest/userguide/inference-profiles-support.
 
 #### Amazon claude code pricing
 
+查看 claude code 当前这个窗口的 cost，只需要在 cli 里边输入
+
+```
+\cost 
+```
+
 [亚马逊基岩定价 — AWS](https://aws.amazon.com/cn/bedrock/pricing/)
 
 ![image-20260211000454461](./imgs/image-20260211000454461.png)
