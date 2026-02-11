@@ -1,6 +1,64 @@
+> 一个小 tips，claude 的文档只要把里边的 en 换成 zh-CN 就能切换成中文
+> https://code.claude.com/docs/en/common-workflows
+> https://code.claude.com/docs/zh-CN/common-workflows
 
 
-### Claude Code Permission
+
+
+
+### Claude code feature 总览
+
+https://code.claude.com/docs/zh-CN/features-overview 
+
+- CLAUDE.md 
+  - 每次对话加载的持久上下文。
+  - 不同层级的目录的 claude.md 会 merge 到一起，具体使用哪个是 claude 自己判断的
+- skills
+  - Claude 可以使用的说明、知识和工作流
+- subagents
+  - 只返回摘要结果的隔离上下文。不同的 subagent 之间不会对话
+- agent teams
+  - 多个独立的 claude code 对话。
+- MCP
+  - 链接到外部的服务，比如说 slack，但是这个我还没配成功
+- hooks
+  - 在特定事件发生时触发的自定义代码片段，这个不是 LLM。这个我还没用过
+
+
+
+
+### skills
+
+https://zhuanlan.zhihu.com/p/1996724780209047225
+
+知乎这篇讲了如何用 claude 的 skills
+
+#### 安装 skills
+
+claude skill 是安装到 ~/.claude/skills 这个 folder 底下的
+
+https://github.com/anthropics/skills
+
+Anthropics 的这个 repo 是用来记录所有可以安装的 skills 的
+
+> 在安装完 skills 之后，需要重启 claude code 才能让 skill 真正生效
+
+#### 调用 skills
+
+```
+# 查看所有安装了的 skills
+/skills 
+
+# 调用具体的 skill，比如说 pptx
+/pptx
+
+# 具体用的时候就直接这样给 claude 说就行了
+用 /pptx 创建一个介绍 claude skill 怎么用的 pptx 文稿
+```
+
+
+
+### Ask for Permission
 
 如果我想允许 claude code 的所有操作的，按时不允许 rm 操作，我可以这么配置文件
 
@@ -26,9 +84,13 @@
 
 `~/.claude/settings.json` 
 
-
-
 如果你在你的 folder 下边新从头开始执行 claude code 的话，要把上边这些东西放到 `settings.local.json` 文件里边去
+
+如果这个方法不 work 的话，有类似 codex --yolo 的指令
+
+```
+claude --dangerously-skip-permissions
+```
 
 
 
@@ -101,7 +163,7 @@ haiku 是 0.001，sonnet 是 0.003，opus 是 0.005 。大概是这个价格区�
 
 
 
-### Claude Code installation
+### installation
 
 安装 claude code
 
@@ -123,7 +185,7 @@ irm https://claude.ai/install.ps1 | iex
 
 
 
-### 不同 Claude 模型
+### 不同 Claude 模型的区别
 
 Claude模型按能力分为三个层级：
 
