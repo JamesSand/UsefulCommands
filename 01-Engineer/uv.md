@@ -4,10 +4,6 @@
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-看起来 uv 的 env 都是安装在对应的 repo 目录下边的，应该不用软链接到别的地方了
-
-
-
 ### uv usage
 
 创建 uv 环境
@@ -15,6 +11,8 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 uv venv
 ```
+
+uv 的 env 都是安装在对应的 repo 目录下边的 `.venv` ，应该不用软链接到别的地方了
 
 uv 导出环境所需要的包到 requirement txt . ref link https://github.com/astral-sh/uv/issues/6007#issuecomment-2303810114 
 

@@ -152,7 +152,11 @@ idev -p gg -N 1 -n 1 -t 12:00:00 -A ASC26009
 
 idev -p gh -N 8 -n 8 -t 48:00:00 -A ASC26009
 
+idev -p gh -N 1 -n 1 -t 24:00:00 -A ASC26009
+
 idev -p gh-dev -N 1 -n 1 -t 2:00:00 -A ASC26009
+
+idev -p gh-dev -N 1 -n 1 -t 2:00:00 -A ASC25082
 
 sinfo -S+P -o "%18P %8a %20F"
 
@@ -289,11 +293,6 @@ tree -L 2 <folder>
 # 只想看目录，不想看文件
 tree -L 2 -d <folder>
 ```
-
-
-
-
-
 
 
 ### server load module
@@ -440,7 +439,14 @@ ln -s /scratch/10922/zhsha/miniconda3 miniconda3
 ```
 
 
+### conda 在 scratch 上有时候会坏掉，这个时候得重新装
 
+```bash
+# 保存旧的 conda
+mv miniconda3 miniconda3.broken.$(date +%Y%m%d)
+# 重新装 conda
+
+```
 
 
 ### 坏掉的 conda 怎么用

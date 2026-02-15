@@ -237,6 +237,14 @@ Qwen/Qwen3-0.6B-Base
 
 ### Verl 训练逻辑
 
+在这个网站上画的
+
+https://excalidraw.com/ 
+
+https://www.runoob.com/w3cnote/github-excalidraw.html 
+
+
+
 终于慢慢理解了 verl 的训练逻辑了，下边这个链接里边有 verl 的 config 的解释
 
 https://verl.readthedocs.io/en/latest/examples/config.html#config-explain-page 

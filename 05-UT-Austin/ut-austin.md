@@ -13,9 +13,6 @@ https://cns.utexas.edu/directory/po-tsan-ku
 po-tsan.ku@austin.utexas.edu 
 
 
-
-
-
 ### CMHC
 
 https://portal.uhs.utexas.edu/Home
@@ -301,6 +298,12 @@ travel 之后要交一个 reimbursement request
 https://utdirect.utexas.edu/apps/services/requests/
 
 
+
+### GDC Printer
+
+用的是五楼台球桌和乒乓球桌旁边的打印机。door code 是 e 的前六位 271828
+
+windows 现在是不能在这里 print 的。尝试过用服务器 print，但是服务器上没有 sudo，不能用 lpadamin 
 
 
 
