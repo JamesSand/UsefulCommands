@@ -109,15 +109,6 @@ idev -p skx -N 1 -n 1 -t 12:00:00
 
 idev -p skx-dev -N 1 -n 1 -t 2:00:00 
 
-idev -p h100 -N 1 -n 1 -t 48:00:00 -- -w c561-006
-
-# 这个能够指定要哪些节点
-idev -p h100 -N 2 -n 2 -t 48:00:00 -- -w c561-[004,008]
-
-idev -p h100 -N 2 -n 2 -t 48:00:00 -- -w c562-[005-007]
-
-idev -p h100 -N 2 -n 2 -t 48:00:00 -- -w c562-006
-
 # 这个是排队排到之后给你自动发 email 的
 idev -p h100 -N 2 -n 2 -t 48:00:00 -E
 
@@ -146,7 +137,11 @@ idev_email_address shazhizhou0@gmail.com
 idev -p h100 -N 2 -n 2 --exclude=c561-001,c561-007 -t 48:00:00
 
 # 这是 vista 上的指令
+idev -p gh -N 1 -n 1 -t 48:00:00 -A ASC26009
+
 idev -p gh -N 1 -n 1 -t 12:00:00 -A ASC26009
+
+
 
 idev -p gg -N 1 -n 1 -t 12:00:00 -A ASC26009
 
@@ -174,6 +169,106 @@ set -g mouse on
 # 底下这个能用
 srun -J debug -N 1 -p gh-dev -n 28 -t 2:00:00 -A ASC25082  --pty /bin/bash
 ```
+
+陈博士的脚本
+
+```
+
+#!/usr/bin/env bash
+set -euo pipefail
+
+# ===== Config =====
+NAMES=("IFML-Q" "IFML-K")        # two job names
+JOB_SCRIPT="gpu_tunnel_job.sh"   # inside: ~/cursor tunnel --name "$SLURM_JOB_NAME"
+PARTITION="gh"
+CHECK_INTERVAL=30                # seconds
+GAP_SEC=1200                    # 4 hours = 4*60*60
+COOLDOWN_SEC=180                 # 3 minutes
+STAMP="${HOME}/.tunnel_guard.last"; : >"$STAMP"
+# ==================
+
+Q="${NAMES[0]}"; K="${NAMES[1]}"
+
+is_active() {  # Active = RUNNING/PENDING/CONFIGURING (exclude stuck COMPLETING)
+  squeue --me -h -o "%T" -n "$1" | grep -Eq '^(RUNNING|PENDING|CONFIGURING)$'
+}
+
+submit_once() {  # idempotent submit
+  is_active "$1" || sbatch --parsable -J "$1" -p "$PARTITION" "$JOB_SCRIPT" >/dev/null || true
+}
+
+_force_submit() {  # unconditional submit (used by rotate)
+  sbatch --parsable -J "$1" -p "$PARTITION" "$JOB_SCRIPT" >/dev/null || true
+}
+
+now() { date +%s; }
+
+ts_to_sec() {  # DD-HH:MM:SS | HH:MM:SS | MM:SS
+  [[ $1 =~ ^([0-9]+)-([0-9]{2}):([0-9]{2}):([0-9]{2})$ ]] &&
+    { echo $(( (10#${BASH_REMATCH[1]}*24+10#${BASH_REMATCH[2]})*3600 + 10#${BASH_REMATCH[3]}*60 + 10#${BASH_REMATCH[4]} )); return; }
+  [[ $1 =~ ^([0-9]{1,2}):([0-9]{2}):([0-9]{2})$ ]] &&
+    { echo $(( 10#${BASH_REMATCH[1]}*3600 + 10#${BASH_REMATCH[2]}*60 + 10#${BASH_REMATCH[3]} )); return; }
+  [[ $1 =~ ^([0-9]{1,2}):([0-9]{2})$ ]] &&
+    { echo $(( 10#${BASH_REMATCH[1]}*60 + 10#${BASH_REMATCH[2]} )); return; }
+  echo 0
+}
+
+run_age() {  # max elapsed seconds for RUNNING instances of name; 0 if none
+  local t max=0 s
+  while read -r t; do
+    [[ -z $t ]] && continue
+    s=$(ts_to_sec "$t"); (( s>max )) && max=$s
+  done < <(squeue --me -h -o "%T %M" -n "$1" | awk '$1=="RUNNING"{print $2}')
+  echo "$max"
+}
+
+rotate() {
+  local n="$1"
+  echo "[$(date)] rotate $n"
+
+  # 1) cancel RUNNING instances of this name
+  squeue --me -h -o "%T %i" -n "$n" | awk '$1=="RUNNING"{print $2}' | xargs -r scancel
+
+  # 2) de-dupe PENDING: keep oldest, cancel newer duplicates
+  squeue --me -h -n "$n" -o "%i %T" \
+    | awk '$2=="PENDING"{print $1}' \
+    | sort -n | awk 'NR>1' | xargs -r scancel
+
+  # 3) ensure at least one PENDING exists; if none, submit one
+  if ! squeue --me -h -o "%T" -n "$n" | grep -q '^PENDING$'; then
+    _force_submit "$n"
+  fi
+
+  date +%s >"$STAMP"
+}
+
+echo "[$(date)] guard up (partition=$PARTITION) — keep ≥1 active; widen gap < ${GAP_SEC}s"
+
+while true; do
+  # Ensure both names are at least Active (R/PD) — submit is idempotent.
+  submit_once "$Q"
+  submit_once "$K"
+
+  ageQ=$(run_age "$Q")
+  ageK=$(run_age "$K")
+
+  # If both RUNNING and age gap < threshold, rotate the older (with cooldown).
+  if (( ageQ>0 && ageK>0 )); then
+    diff=$(( ageQ>ageK ? ageQ-ageK : ageK-ageQ ))
+    if (( diff < GAP_SEC )); then
+      last=$(cat "$STAMP" 2>/dev/null || echo 0)
+      if (( $(now) - last >= COOLDOWN_SEC )); then
+        older=$([[ $ageQ -ge $ageK ]] && echo "$Q" || echo "$K")
+        rotate "$older"
+      fi
+    fi
+  fi
+
+  sleep "$CHECK_INTERVAL"
+done
+
+```
+
 
 ### Vista Stampede3 Docs
 

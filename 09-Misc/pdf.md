@@ -23,5 +23,9 @@ gswin64c -sDEVICE=pdfwrite -o visa-photo-out.pdf -dCompatibilityLevel='1.4' -dNO
 
 ```
 gswin64c -dNOPAUSE -sDEVICE=pdfwrite -sOUTPUTFILE="combine.pdf" -sPAPERSIZE=letter -dBATCH visa-photo-out.pdf F1-visa-out.pdf I20-out.pdf I94-20260108.pdf visa-stampe-20260108-out.pdf
+
+gswin64c -dNOPAUSE -sDEVICE=pdfwrite -sOUTPUTFILE="combine.pdf" -sPAPERSIZE=letter -dBATCH Advisory_Packet.pdf J1-visa-page.pdf ds-2019.pdf
+
+
 ```
 
