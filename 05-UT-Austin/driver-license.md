@@ -37,3 +37,7 @@
 - 示例时间：9/17 下午 3 点路考。
 - 路考通过后，带上驾校给的信封材料，直接 `walk-in` 去任意 DPS 换正式 Texas Driver License。
 
+> **03/03/2026 Update：** 其他 DPS 无法 walk-in 换驾照，仍需提前预约。除了 **Texas Legislative Council, 1501 Congress Ave., Austin, TX 78701**——如图，一楼进去有一个单独的 DPS office，无法在地图上直接找到，但经过验证可以 walk-in 直接处理。
+>
+> ![Texas Legislative Council DPS Office](../imgs/dps-texas-legislative-council.jpg)
+
