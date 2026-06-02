@@ -1,143 +1,98 @@
 
-看一下 aurora 的 codebase
+aurora codebase
 
-/home/zhsha/workspace/aurora-project/aurora-internal
+## 组件
 
-根据下边的示意图拆解一下 aurora 的结构，告诉我 training
-inference
-还有 mooncake 对应的代码都在哪里，是耦合的还是解耦的？
+aurora 里边包含了以下几个组件
+1 ray
+2 mooncake
+3 trainer
+4 sglang engine
 
-```
-┌─────────────────────┐   HTTP callback (hidden states + tokens)   ┌──────────────────────┐
-│  Training (GPU 0,1) │  ◄─────────────────────────────────────── │ sglang (GPU 2,3,4,5) │
-│  aurora.train_entry │                                            │ EAGLE3 spec decoding │
-│  FSDP draft model   │  ────► Mooncake KV-store ────► weight sync│ Qwen3-8B + draft     │
-│  callback server    │        (新 draft 权重)                     │                      │
-│  :18080             │                                            │ :30000               │
-└─────────────────────┘                                            └──────────────────────┘
-        ▲                                                                    ▲
-        │                                                                    │ /v1/chat/completions
-        │                                                                    │
-        │                                                            ┌──────────────────┐
-        │                                                            │ send_requests.sh │
-        │                                                            │ (dataset prompts)│
-        │                                                            └──────────────────┘
-        │ Ray head on :6380
-        │ TOTAL 6 GPUs
-```
+## 组织方式
 
-GPU 切分（非重叠）：
-- GPU 0-1：训练（FSDP/DP，2 卡）
-- GPU 2-5：sglang server（TP=4）
+关于 ray 的组织方式还没有太搞明白，但是现在知道的是在 external mode 下 sglang engine 和剩下几个组件是分开的，sglang engine 是不受 ray 管理的独立进程（另外还有一个 online mode 把 sglang 作为 Ray 内部 SglEngine actor 起，那种情况下 sglang 受 ray 管理；我们当前 case 是 external mode）
 
----
+流程是这样的
+在 inference 的时候
+1 每一个 prompt 结束之后，sglang 会把 hidden state 用一个 put 请求放到 mooncake 里边去。这个是异步的（put 入队就返回，实际传输在后台跑）
+2 等这个 batch 都跑完了，会有一个 flush 操作，等所有的 hidden 都传到 mooncake 里边去。这个时候 sglang 给 trainer 侧发一个 HTTP POST（payload 含 `mooncake_key + tensor_shapes + 长度`，不是抽象信号，trainer 需要这个 key 才知道从 mooncake 哪里拉数据）
+3 trainer 收到 POST 之后样本进 sample_pool 排队，等 pool 攒够一个 batch 才 dispatch 给 TrainerActor，TrainerActor 用 mooncake_key 从 mooncake 拉 hidden，开始 train spec
 
-## Aurora 代码结构拆解
+┌────────────────────────────────────────────────────────────────┐
+│ External sglang (独立进程，GPU 2,3,4,5)                         │
+│                                                                 │
+│   user POST /v1/chat/completions                               │
+│        ↓                                                        │
+│   EAGLE3 spec decoding 推理                                     │
+│        ↓                                                        │
+│   ┌─────────────────────────────────────────────┐              │
+│   │ 推理过程中（不等推理完）:                    │              │
+│   │   EagleMooncakeStore.put(...)                │              │
+│   │   ↳ async DtoH 在 _copy_stream               │              │
+│   │   ↳ 后台线程 RDMA/TCP 传给 Mooncake          │              │
+│   │   ↳ callback 入队 _pending_callbacks         │              │
+│   └─────────────────────────────────────────────┘              │
+│        ↓                                                        │
+│   batch 推理完成 (stream_output)                                │
+│        ↓                                                        │
+│   ┌─────────────────────────────────────────────┐              │
+│   │ flush 同步点（毫秒级）:                      │              │
+│   │   eagle_mooncake_store.flush()               │              │
+│   │   ↳ 等所有 async put 完成（确保 Mooncake     │              │
+│   │     已落盘，trainer 才能 get 到）            │              │
+│   └─────────────────────────────────────────────┘              │
+│        ↓                                                        │
+│   POST :18080/push_sample (daemon thread, fire-and-forget)     │
+│        ↓                                                        │
+│   返回 inference response 给用户（与 POST 并行）                │
+└────────┬────────────────────────────────────────────────────────┘
+         ▼
+┌────────▼───────────────────────────────────────────────────────┐
+│ Training process (GPU 0,1)                                      │
+│                                                                 │
+│   TrainingExternalServer :18080                                │
+│        ↓                                                        │
+│   controller.push_sglang_sample.remote()  ← Ray async          │
+│        ↓                                                        │
+│   sample_pool += sample (只存 metadata)                         │
+│        ↓                                                        │
+│   主循环派发 → train_queues[dp_rank]                            │
+│        ↓                                                        │
+│   TrainerActor.train_from_queue():                              │
+│     EagleMooncakeStore.get(mooncake_key, shapes)               │
+│        ↓                                                        │
+│     [batch_get_into() via RDMA → 直接到训练 GPU]               │
+│        ↓                                                        │
+│     forward / backward / optimizer.step                        │
+└─────────────────────────────────────────────────────────────────┘
 
-代码根目录：`/home/zhsha/workspace/aurora-project/aurora-internal/aurora/`
+## speculator 具体的细节
 
-```
-aurora/
-├── train_entry.py        # 主入口
-├── training/             # 训练（FSDP / 优化器 / Eagle3 loss）
-├── inference/            # 推理引擎封装（HF / sglang Ray actor）
-├── transfer/mooncake/    # Mooncake KV-store 客户端 + master 进程
-├── controller/           # 控制平面：训练 controller / 推理 manager / HTTP callback server
-├── ray/                  # Ray actor 基类、placement group、train group
-├── models/               # 模型定义（draft / target）
-├── config/               # 配置 dataclass（含 mooncake_config.py）
-├── data/                 # 数据加载
-└── utils/                # types.py: InferenceInput / InferenceOutput 等跨进程数据契约
-```
+speculator 需要的是 model 的 low middle 和 high 这几层的 hidden，我们这个具体的 case 是 3 层 hidden
 
-### 1) Training 训练侧
+## TODO
+接下来需要做的事情
 
-| 文件 | 作用 |
-| --- | --- |
-| `aurora/train_entry.py` | 主入口 `train_async_no_generation`：起 placement group、起 Mooncake master、建训练 actor 和推理 engine、把控制权交给 controller |
-| `aurora/training/trainer_actor.py` | Ray actor，封装 FSDP trainer，从 Ray queue 取 batch，调 train_step |
-| `aurora/training/eagle3_trainer.py` | Eagle3 训练逻辑：draft 前/反向、loss |
-| `aurora/training/fsdp.py` | FSDP v2 切分、full-state-dict 加载 |
-| `aurora/training/trainer.py` | Trainer 核心：fwd/bwd/累加梯度 |
-| `aurora/training/optimizer.py` | BF16 优化器 + grad scaling |
-| `aurora/training/checkpoint.py` | `save_draft_model_for_serving(sync_dir)`：把 draft 权重落盘，供推理侧热加载 |
-| `aurora/controller/training_controller.py` | `AsyncTrainingController`（Ray actor）：管 prompt buffer / sample pool，把推理回来的 sample 派发给训练 actor |
-| `aurora/controller/loop.py` | 主训练循环：派发 batch、按步保存、**每 N 步同步 draft 权重到推理** |
-| `aurora/controller/training_external_server.py` | **HTTP callback server**（FastAPI，监听 `0.0.0.0:18080`，端点 `POST /push_sample`）：接收外部 sglang 发回的 mooncake key + tensor 元数据，构造 `InferenceOutput` 推给 controller |
+### 1. 让 radix cache 跟 spec training 数据收集兼容（目标：优化 TTFT）
 
-> 也就是说图里训练框那个 `:18080` 不在 training/ 里，而是在 `controller/training_external_server.py`。
+**方向：方案 ① —— 缓存 KV 时同时缓存 hidden states。**
 
-### 2) Inference / sglang 侧
+为什么只能走方案 ①（目标导向）：
+- TTFT 主要被 prefill 时间拖累，**减少 prefill 是优化 TTFT 的核心手段**
+- radix cache 之所以能省 TTFT，就是因为它**跳过缓存 prefix 的 forward**
+- 方案 ②（cache 命中也跑 forward）等于退化成 disable radix cache，对 TTFT 没帮助
+- 方案 ③（只用 cache miss 训练）不改变 prefill 路径，对 TTFT 也没帮助
+- 所以**只有方案 ① 既能保留 radix cache 的 TTFT 收益、又能正确拿到 EAGLE3 训练所需的 hidden**
 
-| 文件 | 作用 |
-| --- | --- |
-| `aurora/inference/engine/hf_engine.py` | `HFEngine`：HF runner 封 Ray actor，本地推理路径 |
-| `aurora/inference/engine/sgl_engine.py` | `SglEngine`：把 `sgl.Engine`（**打过 patch** 的）封 Ray actor，跑 spec_training 模式，产出 token + 辅助 hidden states 写进 Mooncake |
-| `aurora/inference/factory.py` | 工厂方法，按配置造 HF/Sgl engine |
-| `aurora/controller/inference_manager.py` | `AsyncInferenceManager`（Ray actor）：watermark 缓冲调度器，轮询补 prompt，把 mooncake key 回灌给 controller |
-| `patches/sglang/v0.5.8.post1/sglang.patch` | **sglang 源码补丁**：加 `spec_training` 模式、可配 aux hidden state、Mooncake 写入、HTTP callback 发射 |
-| `patches/sglang/de-minimax-681f31056/sglang.patch` | 另一个 sglang commit 的补丁版本 |
-| `examples/qwen3-8b-external-with-draft/config.yaml` | 图里这套部署的真实 config：训练 2 卡 / `inference_num_gpus: 0` / 外部 sglang，`online_serving.port: 18080` |
+实施要点（待调研）：
+- 在 sglang radix cache 的 entry 里**追加存 aux hidden states + last_hidden_states**（跟着 KV cache 一起的生命周期）
+- cache 命中时，trainer 这边把 hidden 从 cache 里拉出来，跟正常 forward 抓的拼起来交给 mooncake
+- 需要改的地方大致在 sglang patch + EagleMooncakeStore 写入路径
+- 详细约束见 `aurora-internal/zhizhou-note/004-gotchas-and-constraints.md`
 
-**关键点**：图里 `sglang (GPU 2,3,4,5)` 这一框是**独立进程**，不是 aurora Python 里 import 进来的。aurora 不去启动它，是外部用打了 patch 的 sglang CLI 自己拉起来，再通过 HTTP 回调把样本送回 `:18080`。`aurora/inference/engine/sgl_engine.py` 那条路是「本地 sglang Ray actor」分支，跟图里画的 external sglang 是两条并行路径（本 config 里 `inference_num_gpus: 0` 关闭了本地分支）。
+### 2. 搞清楚现在 aurora 性能的 bottleneck 在哪里
 
-### 3) Mooncake KV-store 侧
 
-| 文件 | 作用 |
-| --- | --- |
-| `aurora/transfer/mooncake/utils.py` | `MooncakeMaster` Ray actor：起 mooncake master 子进程（gRPC 50051 + metadata HTTP 50052），父进程死了发 SIGTERM 清理 |
-| `aurora/transfer/mooncake/store.py` | `MooncakeHiddenStateStore`：包 `mooncake.store.MooncakeDistributedStore`，管 RDMA buffer + async put |
-| `aurora/transfer/mooncake/eagle_store.py` | `EagleMooncakeStore`：Eagle3 专用，按后缀 `_hs/_tgt/_ids/_lhs` 分键存 hidden_states / target tokens / input_ids / last_hidden_states |
-| `aurora/transfer/mooncake/buffers.py` | `HostBufferPool / GPUSendBuffer / GPUReceiveBuffer / AsyncPutManager`：RDMA-registered buffer 池 + 异步批量 put |
-| `aurora/config/mooncake_config.py` | `MooncakeConfig` dataclass：master 地址、metadata server、TCP/RDMA、segment/buffer 大小 |
-
-**注意**：图里 "Mooncake KV-store ──► weight sync 新 draft 权重" 这一条线在代码里其实是**两条机制**：
-- **样本传输（hidden states / tokens）**走 Mooncake：sglang 侧写 key，训练侧凭 key 拿数据
-- **draft 权重同步**走**本地磁盘**：`loop.py` 调 `train_group.save_draft_model_for_serving(sync_dir)` 落盘，然后调 `engine.update_weights_from_disk.remote(sync_dir)` 让推理侧 reload。**不走 Mooncake**（图里这块标注有点 misleading）。
-
-### 4) Ray 编排
-
-| 文件 | 作用 |
-| --- | --- |
-| `aurora/ray/ray_actor.py` | `RayActor` 基类：GPU/CUDA device 选取、端口发现、分布式 init address |
-| `aurora/ray/placement_group.py` | `create_placement_groups` / `allocate_train_group`：硬切训练组 vs 推理组的 GPU 资源 |
-| `aurora/ray/train_group.py` | `TrainGroup`：多个训练 actor 的 DP 包装，广播 init、收集结果、统一存/取 model |
-| `aurora/controller/setup.py` | `setup_async_training_with_engines`：把 controller + inference manager + engines 拧到一起 |
-
-Ray head（图里的 `:6380`）由外部启动或 `train_entry` 启动时连接，driver 通过 `NodeAffinitySchedulingStrategy` 绑到 head 节点。
-
-### 5) 跨进程数据契约
-
-`aurora/utils/types.py`：
-- `InferenceInput`（data_id, input_ids, loss_mask, ...）
-- `InferenceOutput`（data_id, **mooncake_key**, tensor_shapes, tensor_dtypes, packed_loss_mask）
-
-**跨进程只传 key + 元信息，不传 tensor**——tensor 在 Mooncake 里。
-
----
-
-## 耦合度评估：**解耦（loosely coupled）**
-
-理由：
-
-1. **核心模块互不 import**：`aurora.training/*` 不 import `aurora.inference/*`，反之亦然。两侧都只依赖 `aurora.controller`、`aurora.ray`、`aurora.transfer`、`aurora.utils` 这些中立胶水。
-
-2. **进程边界清楚**：
-   - 训练 actor 是 Ray actor，跑在 GPU 0-1
-   - 本地推理 engine 是另一组 Ray actor，跑 GPU 2-5
-   - **外部 sglang 是单独的 OS 进程**（patch 过的 CLI 启动），跟 aurora 之间只有：HTTP（`POST /push_sample` 到 `:18080`）+ Mooncake（按 key 取 tensor）+ 磁盘（reload draft 权重）三条通道
-   - Mooncake master 也是独立子进程，靠 gRPC + HTTP 暴露
-
-3. **通信全部异步/管道化**：
-   - 训练 → 推理：Ray queue（prompt）
-   - 推理 → 训练：mooncake key（不传 tensor）走 HTTP 或 Ray actor method
-   - 权重：训练写盘 → 推理 `update_weights_from_disk`
-   - 数据：只通过 Mooncake key 间接共享
-
-4. **可替换/可关掉**：config 里 `inference_num_gpus: 0` 就能彻底关掉本地推理 engine，只留外部 sglang。说明推理后端是**可插拔**的（HF / 本地 sglang Ray actor / 外部 sglang server 三选一）。
-
-5. **单机紧凑、API 解耦**：当前部署所有进程都在一台机器上（共享 Ray 调度、Mooncake 走 TCP），但接口契约（`InferenceInput/Output` + mooncake key + HTTP endpoint）允许后续把外部 sglang 拆到别的机器上而不改训练侧代码。
-
-**一句话**：训练 / 推理 / Mooncake 在**代码组织**上同包但分子目录、互不直接 import；在**运行时**是多个独立进程，靠 Ray / HTTP / Mooncake / 磁盘四种胶水通信。属于「同仓库、跨进程、解耦运行」的结构。
 
 
